@@ -60,15 +60,27 @@
   .refs ol{ padding-left:20px; } .refs li{ margin-bottom:3px; }
   .refs a{ color:var(--accent); text-decoration:none; }
 
+  .downloads{ position:fixed; top:14px; right:16px; z-index:10;
+              font-family:Arial, sans-serif; font-size:9pt; letter-spacing:.3px;
+              background:#fff; border:1px solid var(--line); border-radius:6px;
+              padding:5px 9px; box-shadow:0 1px 4px rgba(0,0,0,.18); }
+  .downloads a{ color:var(--accent); text-decoration:none; font-weight:700; }
+  .downloads a:hover{ text-decoration:underline; }
+  .downloads span{ color:var(--line); margin:0 4px; }
+
   @media print{
     @page{ size:A4; margin:1.8cm; }
     body{ background:#fff; } main{ max-width:none; margin:0; padding:0; box-shadow:none; }
     h2{ break-after:avoid; } figure, table.cmp, .ex, .results{ break-inside:avoid; }
+    .downloads{ display:none; }
   }
-  @media (max-width:640px){ main{ padding:20px; } h1{ font-size:16pt; } }
+  @media (max-width:640px){ main{ padding:20px; } h1{ font-size:16pt; } .downloads{ position:static; margin:8px auto 0; width:max-content; } }
 </style>
 </head>
 <body>
+<div class="downloads">
+  <a href="three-generations-healthcare-it_2col.pdf" title="Two-column PDF">PDF</a><span>|</span><a href="three-generations-healthcare-it_2col.docx" title="Two-column Word (DOCX)">DOCX</a>
+</div>
 <main>
 
 <div class="head">
