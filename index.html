@@ -1,0 +1,287 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Three Generations of Healthcare IT</title>
+<style>
+  :root{ --ink:#111; --muted:#5a6675; --line:#d7dee6; --accent:#0f4c81; --soft:#f5f8fb; }
+  *{ box-sizing:border-box; }
+  html{ font-family:"Times New Roman", Times, serif; font-size:11.5pt; }
+  body{ margin:0; background:#e9edf1; color:var(--ink); }
+  main{ max-width:19.5cm; margin:20px auto; background:#fff; padding:2.2cm 2.4cm;
+        box-shadow:0 1px 8px rgba(0,0,0,.22); line-height:1.5; text-align:justify; }
+
+  .head{ text-align:center; border-bottom:2px solid var(--accent); padding-bottom:14px; margin-bottom:16px; }
+  h1{ font-size:19pt; line-height:1.22; margin:0 0 8px; color:#10233b; }
+  .authors{ font-size:11.5pt; margin:2px 0; }
+  .affil{ font-size:9.5pt; color:var(--muted); margin:2px 0; }
+  .venue{ font-size:9pt; color:var(--muted); margin-top:6px; font-style:italic; }
+
+  .abstract{ background:var(--soft); border:1px solid var(--line); border-radius:6px;
+             padding:12px 16px; margin:0 0 6px; font-size:10.8pt; }
+  .abstract b{ color:var(--accent); }
+  .kw{ font-size:9.5pt; color:var(--muted); margin:6px 0 0; }
+
+  h2{ font-size:13pt; color:#10233b; margin:20px 0 6px; border-bottom:1px solid var(--line); padding-bottom:3px; }
+  h3{ font-size:11.3pt; color:var(--accent); margin:12px 0 3px; }
+  p{ margin:0 0 8px; }
+  strong{ color:#10233b; }
+  sup.c{ color:var(--accent); font-size:8.2pt; }
+  .todo{ background:#fff3cd; padding:0 2px; }
+
+  .ex{ border:1px solid var(--line); border-left:4px solid var(--accent); background:#fbfdff;
+       padding:8px 12px; margin:8px 0; font-size:10.2pt; border-radius:0 6px 6px 0; }
+  .ex h4{ margin:0 0 4px; font-size:10pt; font-family:Arial, sans-serif; color:var(--accent); text-transform:uppercase; letter-spacing:.5px; }
+  .ex .row{ margin:3px 0; }
+  .ex .row b{ font-family:Arial, sans-serif; font-size:9pt; color:#33475b; }
+  .rec{ font-family:Consolas, "Courier New", monospace; font-size:8.8pt; background:#eef3f8;
+        padding:1px 5px; border-radius:3px; display:inline-block; margin:1px 0; }
+
+  table.cmp{ width:100%; border-collapse:collapse; font-size:9.2pt; margin:12px 0; }
+  table.cmp th, table.cmp td{ border:1px solid var(--line); padding:6px 8px; vertical-align:top; text-align:left; }
+  table.cmp th{ background:#10233b; color:#fff; font-family:Arial, sans-serif; font-size:8.6pt; }
+  table.cmp td.axis{ background:var(--soft); font-weight:bold; width:16%; font-family:Arial, sans-serif; font-size:8.8pt; }
+  table.cmp .g1{ background:#eef3f8; } table.cmp .g2{ background:#e4eef8; } table.cmp .g3{ background:#dbe9f7; }
+
+  figure{ margin:16px 0; text-align:center; }
+  figcaption{ font-size:9.2pt; color:var(--muted); margin-top:6px; text-align:left; font-family:Arial, sans-serif; }
+
+  .results{ display:flex; gap:10px; flex-wrap:wrap; margin:10px 0; }
+  .results .s{ flex:1 1 120px; border:1px solid var(--line); border-radius:8px; padding:10px; text-align:center; }
+  .results .s .v{ font-family:Arial, sans-serif; font-weight:800; font-size:18pt; color:var(--accent); }
+  .results .s .l{ font-size:9pt; color:var(--muted); font-family:Arial, sans-serif; margin-top:4px; }
+
+  .pred{ counter-reset:pred; }
+  .pred .p{ margin:4px 0; padding-left:6px; }
+  .pred .p b{ color:var(--accent); font-family:Arial, sans-serif; font-size:9.5pt; }
+
+  .refs{ font-size:8.8pt; line-height:1.34; }
+  .refs ol{ padding-left:20px; } .refs li{ margin-bottom:3px; }
+  .refs a{ color:var(--accent); text-decoration:none; }
+
+  @media print{
+    @page{ size:A4; margin:1.8cm; }
+    body{ background:#fff; } main{ max-width:none; margin:0; padding:0; box-shadow:none; }
+    h2{ break-after:avoid; } figure, table.cmp, .ex, .results{ break-inside:avoid; }
+  }
+  @media (max-width:640px){ main{ padding:20px; } h1{ font-size:16pt; } }
+</style>
+</head>
+<body>
+<main>
+
+<div class="head">
+  <h1>Three Generations of Healthcare IT: From the Digital Record to the Computable Care Process</h1>
+  <p class="authors">Alexander Apartsin<sup>1</sup>, Yehudit Aperstein<sup>2</sup></p>
+  <p class="affil"><sup>1</sup>School of Computer Science, Holon Institute of Technology (HIT), Holon, Israel · <sup>2</sup>Intelligent Systems, Afeka Academic College of Engineering, Tel Aviv, Israel</p>
+  <p class="venue">Position paper · draft</p>
+</div>
+
+<div class="abstract">
+<b>Abstract.</b> Healthcare information technology has advanced through two well-defined generations and is entering a third. The first generation <b>digitized the record</b>, replacing paper charts with electronic documents and transactional databases. The second generation <b>digitized clinical facts</b>, using clinical natural-language processing (NLP) together with controlled terminologies and interoperability standards to encode diagnoses, medications, procedures, and results as structured, computable data. Yet much of the care process itself, what should happen next, when, under which conditions, and by whom, still lives in free-form communication: notes, discharge instructions, referrals, handovers, and messages. We argue that an emerging <b>third generation, driven by modern artificial intelligence and large language models (LLMs) coupled with symbolic reasoning, digitizes the care process</b>, converting clinical communication into structured, executable representations. Each generation is defined by the unit of information it makes computable and by the technology that makes it so: databases, then clinical NLP, then LLM-based neural-symbolic systems. We give explicit criteria for what constitutes a generation, characterize the three along representative systems, algorithms and technology stack, and use cases and needs, distinguish the third generation from classical clinical NLP and from computer-interpretable guidelines, and identify the capabilities it requires: reliable extraction, verifiable temporal reasoning, auditability, and calibrated human oversight. We ground the argument in a working instance, reliable extraction of follow-up instructions, where a hybrid neural-symbolic pipeline reaches action&ndash;time Pair F1 of 0.997 while general-purpose LLMs reach about 0.53, and set out testable predictions and a research agenda.
+<p class="kw"><b>Keywords:</b> healthcare IT; electronic health records; clinical NLP; large language models; neural-symbolic AI; temporal reasoning; care-process automation; clinical decision support</p>
+</div>
+
+<h2>1. Introduction</h2>
+<p>Every generation of healthcare information technology can be described by the <em>unit of information it makes computable</em>. The first made the <em>document</em> computable; the second made the <em>fact</em> computable; the third, we argue, makes the <em>care process</em> computable (Figure 1). Generational language has been used before for electronic medical records and for the twenty-five-year evolution of health IT,<sup class="c">[1,2]</sup> but the organizing principle we propose, the unit of computability paired with its enabling technology, is a synthesis rather than a restatement: each transition unlocked a distinct class of systems, required a distinct algorithmic stack, and served a distinct set of clinical needs, and each left a residue that the next generation had to address.</p>
+<p>The residue left by the first two generations is the same one clinicians experience daily. A physician writes &ldquo;repeat the CBC in two weeks&rdquo; or &ldquo;refer to cardiology if symptoms persist,&rdquo; and that instruction, though clinically decisive, is captured only as narrative text. The record stores it (generation one) and may even code the associated diagnosis or medication (generation two), but the <em>action</em>, its <em>timing</em>, its <em>condition</em>, and its <em>owner</em> remain outside the computable substrate. The consequence is measurable: missed test-result follow-up ranges from 6.8% to 62%,<sup class="c">[3]</sup> roughly half of recommended imaging follow-ups are never performed,<sup class="c">[4]</sup> and only about a third of referrals reach a completed specialist visit.<sup class="c">[5]</sup></p>
+<p><strong>Contributions.</strong> (1) explicit criteria for what constitutes a generation of healthcare IT, and a three-generation model organized by the unit of computability and its enabling technology; (2) for each generation, representative <em>systems</em>, <em>algorithms and technology stack</em>, and <em>use cases and needs</em>, with concrete examples; (3) a definition of the third generation and the actionable clinical record it produces, distinguished from classical clinical NLP and from computer-interpretable guidelines; (4) the enabling technologies and reliability requirements it imposes; (5) a working instance with empirical evidence, convergent evidence from adjacent systems, and testable predictions.</p>
+
+<figure>
+  <svg viewBox="0 0 720 150" xmlns="http://www.w3.org/2000/svg" width="100%" style="max-width:680px">
+    <g font-family="Arial, sans-serif">
+      <line x1="40" y1="112" x2="690" y2="112" stroke="#c7d4e0" stroke-width="2"/>
+      <circle cx="150" cy="112" r="7" fill="#9db8d2"/>
+      <rect x="60" y="36" width="180" height="58" rx="8" fill="#eef3f8" stroke="#9db8d2"/>
+      <text x="150" y="55" font-size="11" font-weight="700" fill="#33475b" text-anchor="middle">1st generation</text>
+      <text x="150" y="70" font-size="9.5" fill="#52606d" text-anchor="middle">digitizes the record</text>
+      <text x="150" y="84" font-size="8.5" fill="#7b8794" text-anchor="middle">databases</text>
+      <circle cx="360" cy="112" r="7" fill="#5b8fc0"/>
+      <rect x="270" y="36" width="180" height="58" rx="8" fill="#e2edf7" stroke="#5b8fc0"/>
+      <text x="360" y="55" font-size="11" font-weight="700" fill="#1c3d5a" text-anchor="middle">2nd generation</text>
+      <text x="360" y="70" font-size="9.5" fill="#33475b" text-anchor="middle">digitizes clinical facts</text>
+      <text x="360" y="84" font-size="8.5" fill="#5a6675" text-anchor="middle">clinical NLP</text>
+      <circle cx="570" cy="112" r="8" fill="#0f4c81"/>
+      <rect x="480" y="30" width="186" height="64" rx="8" fill="#0f4c81"/>
+      <text x="573" y="49" font-size="11.5" font-weight="700" fill="#fff" text-anchor="middle">3rd generation (emerging)</text>
+      <text x="573" y="65" font-size="9.5" fill="#dbe8f5" text-anchor="middle">digitizes the care process</text>
+      <text x="573" y="80" font-size="8.5" fill="#aecbea" text-anchor="middle">AI / LLMs + neural-symbolic</text>
+      <text x="360" y="140" font-size="9.5" fill="#7b8794" text-anchor="middle" font-style="italic">unit of computability:  document  →  fact  →  process</text>
+    </g>
+  </svg>
+  <figcaption><strong>Figure 1.</strong> Three generations of healthcare IT, organized by the unit of information each makes computable and the technology that makes it computable.</figcaption>
+</figure>
+
+<h2>2. What Defines a Generation of Healthcare IT</h2>
+<p>A generation is not any trend; it is a shift with structural consequences. We call a shift a generation when it satisfies five markers: (i) a new <strong>atomic unit of computability</strong>; (ii) a <strong>driving force</strong> that makes the shift economically or clinically inevitable; (iii) an <strong>enabling technology and standard</strong>; (iv) a new <strong>class of computation</strong> the unit unlocks; and (v) a <strong>residual limitation</strong> that the shift cannot solve and that seeds the next generation. This makes the framing checkable: a purported generation that fails these markers is a feature, not a generation, and the model predicts that the residual limitation of one generation names the unit of the next. Table 1 shows all three generations satisfying the markers, with the residue of each pointing at its successor. The markers are facets of a single shift rather than five independent tests; their force is the descriptive coherence they produce together with one predictive claim, that the residual limitation of each generation names the unit of the next.</p>
+<table class="cmp">
+  <tr><th>Marker</th><th>Gen 1: Record</th><th>Gen 2: Facts</th><th>Gen 3: Care process</th></tr>
+  <tr><td class="axis">Unit of computability</td><td class="g1">Clinical document</td><td class="g2">Discrete clinical fact</td><td class="g3">Intended action / process step</td></tr>
+  <tr><td class="axis">Driving force</td><td class="g1">HITECH / Meaningful Use policy and reimbursement</td><td class="g2">Interoperability and quality-measurement mandates</td><td class="g3">Maturation of clinical NLP and LLMs; care-continuity and safety pressure</td></tr>
+  <tr><td class="axis">Class of computation unlocked</td><td class="g1">Store, retrieve, exchange documents</td><td class="g2">Compute <em>on</em> facts (decision support, quality, research)</td><td class="g3">Compute <em>on</em> process (monitor, prioritize, close loops)</td></tr>
+  <tr><td class="axis">Residual limitation (seeds next)</td><td class="g1">Content is unstructured narrative</td><td class="g2">Facts are coded, but actions and process are not</td><td class="g3">Reliability, safety, evaluation, integration (open)</td></tr>
+</table>
+
+<p><strong>Related framings.</strong> Our lens is complementary to existing models, not a competitor. The data-information-knowledge hierarchy (DIKW) describes a generic ascent from raw data to actionable knowledge;<sup class="c">[6]</sup> we specialize the question to <em>which clinical object</em> is made computable at each step. Maturity models such as the HIMSS Electronic Medical Record Adoption Model (EMRAM), an eight-stage ladder, and the wider family of hospital digital-maturity frameworks measure <em>how much</em> capability an institution has adopted;<sup class="c">[7,8]</sup> our model is orthogonal, naming <em>what kind</em> of information becomes computable, with the third generation lying beyond the capabilities those ladders currently score. Prior work has also used generational and evolutionary language for electronic health records;<sup class="c">[1,2]</sup> we make the organizing principle explicit and testable.</p>
+
+<p><strong>Scope of the model.</strong> The three generations describe a progression of <em>capabilities</em>, not a fixed global timeline: adoption differs by country and institution, and the periodization is anchored in the well-documented history of United States electronic health records. The generations are cumulative, each layer subsuming the ones beneath it. The empirical grounding offered here is a single feasibility instance (Section 8); the model&rsquo;s value is as an organizing lens and a source of testable predictions.</p>
+
+<h2>3. Generation One: Digitizing the Record</h2>
+<p>The first generation replaced the paper chart with an electronic one. Its defining achievement was capture, storage, retrieval, and transmission of clinical documents, driven in the United States by the HITECH Act (2009) and the Meaningful Use incentive program, which moved EHR adoption from a minority of hospitals to near-universal within a decade.<sup class="c">[9,10]</sup> The intellectual root is older: Weed&rsquo;s problem-oriented medical record proposed that the chart be an organized, auditable information structure rather than a chronological narrative.<sup class="c">[11]</sup> Its enabling technology was the transactional database, with no automated interpretation of clinical content.</p>
+<div class="ex">
+  <h4>Generation 1: concrete examples</h4>
+  <div class="row"><b>Systems:</b> Epic, Oracle Health/Cerner, MEDITECH, Allscripts; the U.S. Department of Veterans Affairs VistA/CPRS; PACS for radiology images; departmental LIS and pharmacy systems.</div>
+  <div class="row"><b>Algorithms &amp; tech stack:</b> relational databases and transactional (OLTP) systems; document imaging and scanning; structured forms and templates; client-server and later web architectures; HL7 v2 messaging for point-to-point exchange; DICOM for images.</div>
+  <div class="row"><b>Use cases &amp; needs:</b> legibility and availability of the chart; e-prescribing and order entry (CPOE); charge capture and billing; regulatory reporting; basic clinical documentation. The unmet need it exposed: the record was digital but its <em>content</em> was largely unstructured narrative.</div>
+</div>
+
+<h2>4. Generation Two: Digitizing Clinical Facts (the NLP-Based Generation)</h2>
+<p>The second generation made discrete clinical facts computable and exchangeable. Its enabling technology was clinical natural-language processing: systems such as MedLEE and cTAKES parsed narrative reports into coded concepts, turning text into computable facts,<sup class="c">[12,13]</sup> which then moved from free text into structured fields governed by controlled terminologies, with interoperability standards letting those facts move between systems.<sup class="c">[14,15]</sup> This enabled the first broad wave of computation <em>on</em> clinical data: decision support, quality measurement, registries, and secondary research use.<sup class="c">[16]</sup> Yet a persistent tension appeared: forcing clinical meaning into structured fields captures some facts while much of the reasoning stays in narrative.<sup class="c">[17]</sup></p>
+<div class="ex">
+  <h4>Generation 2: concrete examples</h4>
+  <div class="row"><b>Systems:</b> structured EHR modules and clinical decision support (CDS); clinical-NLP pipelines (MedLEE, cTAKES, CLAMP); health information exchanges (HIEs); SMART on FHIR apps and terminology servers;<sup class="c">[18]</sup> clinical data warehouses and research networks such as i2b2 and OHDSI/OMOP; eCQM quality-measure engines.</div>
+  <div class="row"><b>Algorithms &amp; tech stack:</b> rule-based and statistical clinical NLP for concept extraction; controlled terminologies and ontologies (SNOMED CT, ICD-10, LOINC, RxNorm);<sup class="c">[14]</sup> rule-based CDS (drug-interaction checks, alerts, Arden syntax); HL7 v2/v3, CDA, and FHIR for interoperability;<sup class="c">[15]</sup> the OMOP common data model and ETL; structured data entry; phenotyping and supervised ML on tabular EHR data.</div>
+  <div class="row"><b>Use cases &amp; needs:</b> interoperability and data exchange; decision support and safety alerting; quality and performance measurement; population health and registries; secondary use for research;<sup class="c">[16]</sup> coded problem/medication lists and reimbursement coding. The unmet need it exposed: coding a <em>fact</em> is not the same as capturing an <em>action</em>; the care process, distributed across communication, remained outside the structured layer.</div>
+</div>
+
+<h2>5. The Gap: The Care Process Lives in Communication</h2>
+<p>Both prior generations optimized <em>state</em>, the record and the facts it contains, but not <em>process</em>, the sequence of intended actions that constitutes care. Follow-up instructions, conditional plans, handover items, and self-care directives are authored as language and consumed as language, and they fail as language: they are forgotten, mis-scheduled, or never closed.<sup class="c">[3,17]</sup> The clinical-safety literature documents this loop-closure failure as a driver of diagnostic error and avoidable harm, with system-level economic weight.<sup class="c">[19,20]</sup> The gap is structural, not incidental: the missing information is an <em>executable representation of what should happen next</em>, and neither the digital document nor the coded fact encodes it. A single note makes the three generations concrete:</p>
+<div class="ex" style="border-left-color:#2e7d32">
+  <h4>One note, three generations</h4>
+  <div class="row"><b>Clinical note:</b> &ldquo;Repeat CBC in two weeks; refer to cardiology if chest pain persists.&rdquo;</div>
+  <div class="row"><b>Generation 1 (record):</b> the sentence is stored verbatim as searchable text; nothing about it is computable beyond keyword search.</div>
+  <div class="row"><b>Generation 2 (facts):</b> &ldquo;CBC&rdquo; maps to a LOINC laboratory concept and &ldquo;chest pain&rdquo; to a SNOMED problem, but the <em>plan</em>, the repeat, the referral, and their timing and condition, stays in narrative.</div>
+  <div class="row"><b>Generation 3 (care process):</b> two actionable records are emitted, each linked to its source span and monitorable:
+    <div><span class="rec">{action: repeat CBC, time: +14 days, status: pending}</span></div>
+    <div><span class="rec">{action: cardiology referral, condition: chest pain persists, actor: physician, status: conditional}</span></div>
+  </div>
+</div>
+
+<h2>6. Generation Three: Digitizing the Care Process (the AI/LLM-Based Generation)</h2>
+<p>The third generation makes the care process computable by converting clinical communication into structured, executable records. Its enabling technology is modern AI: large language models for semantic interpretation, coupled with symbolic reasoning for verifiable structure. The atomic object is no longer a document or a fact but an <strong>actionable clinical record</strong>: a normalized statement of an intended action together with the metadata needed to schedule, monitor, and audit it. Concretely, the representation extends from the simple <em>Action + Time</em> pair to a richer tuple (Figure 2):</p>
+<figure>
+  <svg viewBox="0 0 700 96" xmlns="http://www.w3.org/2000/svg" width="100%" style="max-width:660px">
+    <g font-family="Arial, sans-serif" font-size="11.5">
+      <rect x="16"  y="34" width="84" height="30" rx="6" fill="#0f4c81"/><text x="58"  y="54" fill="#fff" text-anchor="middle">Action</text>
+      <rect x="106" y="34" width="70" height="30" rx="6" fill="#0f4c81"/><text x="141" y="54" fill="#fff" text-anchor="middle">Time</text>
+      <rect x="182" y="34" width="94" height="30" rx="6" fill="#2e7d32"/><text x="229" y="54" fill="#fff" text-anchor="middle">Condition</text>
+      <rect x="282" y="34" width="66" height="30" rx="6" fill="#2e7d32"/><text x="315" y="54" fill="#fff" text-anchor="middle">Actor</text>
+      <rect x="354" y="34" width="80" height="30" rx="6" fill="#2e7d32"/><text x="394" y="54" fill="#fff" text-anchor="middle">Context</text>
+      <rect x="440" y="34" width="104" height="30" rx="6" fill="#2e7d32"/><text x="492" y="54" fill="#fff" text-anchor="middle">Dependency</text>
+      <rect x="550" y="34" width="74" height="30" rx="6" fill="#2e7d32"/><text x="587" y="54" fill="#fff" text-anchor="middle">Status</text>
+      <text x="330" y="20" fill="#33475b" text-anchor="middle" font-style="italic">the actionable clinical record</text>
+    </g>
+  </svg>
+  <figcaption><strong>Figure 2.</strong> The care-process object. Blue: the proven core (Action + Time). Green: the extensions that make an instruction schedulable, assignable, and monitorable.</figcaption>
+</figure>
+<div class="ex">
+  <h4>Generation 3: concrete examples</h4>
+  <div class="row"><b>Systems:</b> ambient clinical documentation / AI scribes (Nuance DAX Copilot, Abridge, Suki, Nabla) that turn the spoken encounter into notes;<sup class="c">[21]</sup> follow-up and care-gap engines; referral-loop and results-management tools; agentic clinical-workflow assistants; the MedFollow / CareLoop line of work as a research instance.<sup class="c">[22]</sup></div>
+  <div class="row"><b>Algorithms &amp; tech stack:</b> clinical language models (BioBERT, ClinicalBERT, GatorTron, Med-PaLM);<sup class="c">[23&ndash;26]</sup> clinical information extraction (MedLEE, cTAKES, CLAMP) inherited from the previous generation;<sup class="c">[12,13,27]</sup> temporal extraction and normalization (i2b2-2012 temporal relations, THYME / Clinical TempEval, HeidelTime / SUTime);<sup class="c">[28&ndash;32]</sup> neural-symbolic pipelines pairing learned extraction with deterministic temporal reasoning;<sup class="c">[33]</sup> selective prediction and uncertainty calibration; event and relation extraction;<sup class="c">[34]</sup> FHIR write-back for actionable outputs.<sup class="c">[15]</sup></div>
+  <div class="row"><b>Use cases &amp; needs:</b> follow-up instruction extraction; care-gap and referral-loop closure; scheduling and reminder automation; quality and safety monitoring; safe handovers; patient-message triage; turning ambient-captured encounters into executable tasks. Needs it imposes: reliability over fluency, correct temporal computation, source-linked auditability, and human oversight for uncertain cases.</div>
+</div>
+
+<h3>6.1 What the third generation is not</h3>
+<p>Two mature lines can each be mistaken for the third generation, and the distinction sharpens the claim. <strong>It is not classical clinical NLP.</strong> Concept extraction from notes has existed for decades (MedLEE, cTAKES, CLAMP), but it produces <em>facts</em>: it records that &ldquo;MRI&rdquo; appears, feeding the second-generation structured layer.<sup class="c">[12,13,27]</sup> The third generation produces an <em>executable action</em>: that an MRI is due in two weeks, still pending, owned by a specific actor, at a reliability high enough to act on rather than only index. The object is different (process, not fact), the bar is different (act, not retrieve), and LLM-era semantics are what finally make it tractable at scale. Clinical NLP improving is therefore not, on its own, a generational shift: generations here are cumulative layers, and the third is distinguished by the object it makes computable and the reliability bar it must clear, not by the raw technique. <strong>It is not computer-interpretable guidelines.</strong> That program encoded <em>generic, top-down, population-level</em> protocols as executable models.<sup class="c">[35,36]</sup> The third generation extracts <em>patient-specific, bottom-up</em> actionable records from the actual communication of a given encounter. The two are complementary: guidelines say what should generally happen; the third generation captures what a clinician actually instructed for this patient.</p>
+
+<h3>6.2 Convergent evidence that the generation is emerging</h3>
+<p>The claim does not rest on a single system. Independent developments are converging on the actionable record. <strong>Ambient documentation</strong> has moved into routine practice, converting the spoken encounter into notes and, increasingly, into orders and tasks.<sup class="c">[21,37]</sup> <strong>Clinical LLM evaluation</strong> is maturing toward task competence rather than fluency: benchmarks now measure diagnostic-questioning efficiency in patient conversations, treating the clinical dialogue itself as a computable, measurable process.<sup class="c">[38]</sup> <strong>Care-gap, results-management, and referral-loop tools</strong> already act on structured follow-up signals, and early <strong>agentic clinical assistants</strong> attempt multi-step workflow actions. These are separate research and product lines, blind to each other, arriving at the same object: a structured, monitorable representation of what should happen next. MedFollow is our controlled feasibility proof within this convergence (Section 8).</p>
+
+<h3>6.3 Will end-to-end LLMs make the symbolic layer obsolete?</h3>
+<p>A more capable generator does not remove the requirements the third generation imposes. Auditability, verifiable temporal correctness, and a calibrated signal of when to defer are properties of the <em>output contract</em>, not gaps in model capability: a system that acts on patient trajectories must prove that a date is correct and trace it to its source, however fluent the underlying model becomes. The symbolic layer supplies guarantees, not missing knowledge, which is why reliability, not scale, is the binding constraint.<sup class="c">[38,39]</sup></p>
+
+<h2>7. A Comparative View of the Three Generations</h2>
+<p>Table 2 consolidates the three generations across the three axes, making the progression of systems, algorithms, and use cases explicit alongside the enabling AI technology.</p>
+<table class="cmp">
+  <tr><th>Axis</th><th>Gen 1: Record</th><th>Gen 2: Facts</th><th>Gen 3: Care process</th></tr>
+  <tr><td class="axis">Enabling AI technology</td><td class="g1">None (databases; no automated interpretation)</td><td class="g2">Clinical NLP (rule-based / statistical)</td><td class="g3">LLMs + neural-symbolic AI</td></tr>
+  <tr><td class="axis">Representative systems</td><td class="g1">Epic, Cerner, VistA/CPRS, MEDITECH; PACS, LIS</td><td class="g2">CDS, clinical-NLP pipelines, HIE, SMART-on-FHIR apps, i2b2/OMOP warehouses, eCQM engines</td><td class="g3">Ambient scribes (DAX, Abridge, Suki, Nabla); follow-up/care-gap engines; agentic workflow assistants; MedFollow/CareLoop</td></tr>
+  <tr><td class="axis">Algorithms &amp; tech stack</td><td class="g1">Relational/OLTP DBs, document imaging, HL7 v2, DICOM, structured forms</td><td class="g2">SNOMED CT/ICD/LOINC/RxNorm, concept extraction, rule-based CDS, FHIR/CDA, OMOP CDM, ML on tabular data</td><td class="g3">Clinical LLMs, IE, temporal reasoning, neural-symbolic pipelines, selective prediction, FHIR write-back</td></tr>
+  <tr><td class="axis">Use cases &amp; needs</td><td class="g1">Legibility, availability, CPOE, e-prescribing, billing</td><td class="g2">Interoperability, decision support, quality measures, registries, research</td><td class="g3">Follow-up &amp; referral-loop closure, scheduling/reminders, safety monitoring, handover, message triage</td></tr>
+  <tr><td class="axis">Value unlocked</td><td class="g1">A legible, available digital substrate; billing and basic safety</td><td class="g2">Computation on data: decision support, quality measurement, population health and research</td><td class="g3">Loop closure and follow-up safety; care-coordination and workflow automation</td></tr>
+</table>
+
+<h2>8. A Working Instance: Reliable Follow-Up Extraction</h2>
+<p>Follow-up extraction is the smallest complete instance of the third generation: it takes clinical communication and emits an executable Action + Time record. Our MedFollow study is a feasibility proof that the instance is buildable and that architecture is decisive.<sup class="c">[22]</sup> A hybrid neural-symbolic pipeline, learned extraction of actions and time expressions coupled with deterministic temporal normalization, was evaluated on a controlled 2,000-note benchmark against generative baselines.</p>
+<div class="results">
+  <div class="s"><div class="v">0.997</div><div class="l">Pair F1, seen actions (hybrid)</div></div>
+  <div class="s"><div class="v">0.986</div><div class="l">Pair F1, unseen action types (hybrid)</div></div>
+  <div class="s"><div class="v">0.00</div><div class="l">day temporal error (hybrid)</div></div>
+  <div class="s"><div class="v">~0.53</div><div class="l">Pair F1, GPT-4o-mini / LLaMA-3</div></div>
+</div>
+<p>The generative models recognized actions accurately (action F1 above 0.96) yet collapsed on the end-to-end task, because linking and temporal reasoning remained implicit in generation. The lesson generalizes to the whole third generation: the value is created not in recognizing clinical concepts but in <em>reliably assembling them into an executable representation</em>, which is where explicit, verifiable structure earns its place. The result is one synthetic-benchmark instance, and its role is feasibility, not deployment coverage; the extension from Action + Time to Action + Time + Condition + Actor + Context + Dependency + Status is the natural next increment, motivated by real transcribed notes containing medication changes, conditional and generic follow-up, self-care, and actions without explicit timing.</p>
+
+<h2>9. Enabling Technologies and Requirements for the Third Generation</h2>
+<h3>9.1 Enabling technologies</h3>
+<p>The third generation stands on four technical pillars. <strong>Clinical language models</strong> (BioBERT, ClinicalBERT, GatorTron, and large medical LLMs such as Med-PaLM) supply robust semantic interpretation of heterogeneous clinical language.<sup class="c">[23&ndash;26]</sup> <strong>Clinical information extraction</strong>, the NLP line inherited from the previous generation (MedLEE, cTAKES, CLAMP, and the i2b2/n2c2 benchmarks), supplies the entities and relations.<sup class="c">[12,13,27,34]</sup> <strong>Temporal reasoning</strong>, from the i2b2 2012 temporal-relations challenge and Clinical TempEval to normalization engines, supplies the calendar arithmetic that turns &ldquo;in two weeks&rdquo; into a date.<sup class="c">[28&ndash;32]</sup> <strong>Ambient documentation</strong> extends the input surface from written notes to the spoken encounter.<sup class="c">[21,37]</sup></p>
+<h3>9.2 Why fluent generation is not enough</h3>
+<p>General-purpose large language models interpret clinical language well but are unreliable where the third generation is most demanding: linking an action to its time and normalizing it into an executable schedule, without omission or fabrication, and with a calibrated signal of when to defer.<sup class="c">[39,40]</sup> Reliability, not fluency, is the binding constraint. This motivates <strong>neural-symbolic</strong> designs that pair learned extraction with deterministic, verifiable reasoning,<sup class="c">[33]</sup> and <strong>selective prediction</strong> that routes uncertain cases to a human.</p>
+<h3>9.3 Requirements</h3>
+<p>Four requirements distinguish care-process systems from their predecessors: <strong>(1) reliable, source-linked extraction</strong> (every action traceable to the text that produced it); <strong>(2) verifiable temporal correctness</strong> (dates computed, not guessed); <strong>(3) auditability</strong> (outputs a clinician or regulator can inspect); and <strong>(4) calibrated human oversight</strong> (selective automation rather than full autonomy). These are safety requirements, and they shape the architecture rather than decorate it. Explainable methods for comparing and justifying extracted content directly support the auditability requirement.<sup class="c">[41]</sup> The requirements also connect the third generation to the older program of computer-interpretable guidelines and care pathways, which sought executable models of process but lacked a reliable path from free-text communication into those models.<sup class="c">[35,36]</sup></p>
+
+<h2>10. Predictions and Research Agenda</h2>
+<h3>10.1 Testable predictions</h3>
+<p>If the three-generation model is right, the following are checkable over the next several years, and their failure would count against it:</p>
+<div class="pred">
+  <div class="p"><b>P1.</b> The machine-actionable use of existing FHIR workflow resources (<em>Task</em>, <em>CarePlan</em>, <em>ServiceRequest</em>) will grow: today used mainly for documentation and exchange, they will increasingly carry executable, closed-loop follow-up, and the standard will extend their action and temporal semantics accordingly. <em>Checkable by</em> a rising share of follow-up actions represented as these resources rather than free text (horizon 3&ndash;5 years).</div>
+  <div class="p"><b>P2.</b> Evaluation will shift from text-overlap metrics to <em>executable correctness</em>: action&ndash;time pair linking, temporal accuracy, and loop-closure rate. <em>Checkable by</em> new clinical benchmarks reporting these measures rather than ROUGE/BLEU-style overlap (horizon 2&ndash;4 years).</div>
+  <div class="p"><b>P3.</b> Reliable systems will converge on <em>source-linked, auditable</em> action records with selective human review, rather than end-to-end free generation. <em>Checkable by</em> deployed follow-up and results-management tools exposing the source span and a confidence-based review queue (horizon 3&ndash;5 years).</div>
+  <div class="p"><b>P4.</b> Ambient documentation will move downstream from producing notes to producing <em>tasks and orders</em>, closing the loop into scheduling and results management. <em>Checkable by</em> ambient-scribe products adding order and task generation and results follow-up, not just note drafting (horizon 2&ndash;4 years).</div>
+</div>
+<h3>10.2 Open challenges</h3>
+<p><strong>Real-world and multilingual data.</strong> Moving from synthetic corpora to de-identified real notes, across languages and documentation styles, is the central empirical risk. <strong>Safety and regulation.</strong> Care-process automation acts on patient trajectories; selective prediction, auditability, and human oversight are prerequisites, and regulatory pathways for such software need articulation. <strong>Integration.</strong> Actionable records must write back into scheduling, results-management, and EHR workflows, which makes FHIR-level interoperability and process modeling first-class concerns.<sup class="c">[15,35]</sup> <strong>Generalization.</strong> An extensible ontology of clinical actions, and methods that transfer to unseen action types, are needed for coverage beyond any fixed schema.</p>
+
+<h2>11. Conclusion</h2>
+<p>Healthcare IT has made the document and then the fact computable; the care process is next. Each generation is defined by the unit it makes computable and the technology that makes it so: databases, then clinical NLP, then LLM-based neural-symbolic systems. The third generation converts clinical communication into structured, executable, auditable records of intended action, and its binding constraint is reliability rather than fluency. Follow-up extraction demonstrates that the generation is technically within reach today, convergent developments show it arriving from several directions at once, and the criteria and predictions here make the claim checkable rather than evocative alone.</p>
+
+<div class="refs">
+<h2>References</h2>
+<ol>
+<li>Ammenwerth E, et al. Twenty-Five Years of Evolution and Hurdles in Electronic Health Records and Interoperability in Medical Research: Comprehensive Review. <em>J Med Internet Res</em> 2025;27:e59024. doi:10.2196/59024.</li>
+<li>Evans RS. Electronic Health Records: Then, Now, and in the Future. <em>Yearb Med Inform</em> 2016;25(Suppl 1):S48&ndash;S61. doi:10.15265/IYS-2016-s006.</li>
+<li>Callen JL, Westbrook JI, Georgiou A, Li J. Failure to follow-up test results for ambulatory patients: a systematic review. <em>J Gen Intern Med</em> 2012;27(10):1334&ndash;1348. doi:10.1007/s11606-011-1949-5.</li>
+<li>American College of Radiology. Recommendations Follow-Up Improvement Collaborative (accessed 2026).</li>
+<li>Closing the referral loop: primary-care referrals to specialists in a large health system. Duke Institute for Health Innovation; CMS eCQM CMS50v13.</li>
+<li>Rowley J. The wisdom hierarchy: representations of the DIKW hierarchy. <em>J Inf Sci</em> 2007;33(2):163&ndash;180. doi:10.1177/0165551506070706.</li>
+<li>Li R, Niu Y, Scott SR, et al. Using Electronic Medical Record Data for Research in a HIMSS Analytics EMRAM Stage 7 Hospital in Beijing: Cross-sectional Study. <em>JMIR Med Inform</em> 2021;9(8):e24405. doi:10.2196/24405.</li>
+<li>Duncan R, Eden R, Woods L, Wong I, Sullivan C. Synthesizing Dimensions of Digital Maturity in Hospitals: Systematic Review. <em>J Med Internet Res</em> 2022;24(3):e32994. doi:10.2196/32994.</li>
+<li>Blumenthal D, Tavenner M. The &ldquo;Meaningful Use&rdquo; Regulation for Electronic Health Records. <em>N Engl J Med</em> 2010;363:501&ndash;504. doi:10.1056/NEJMp1006114.</li>
+<li>Adler-Milstein J, et al. Electronic Health Record Adoption In US Hospitals: Progress Continues, But Challenges Persist. <em>Health Aff</em> 2015;34(12):2174&ndash;2180. doi:10.1377/hlthaff.2015.0992.</li>
+<li>Weed LL. Medical Records That Guide and Teach. <em>N Engl J Med</em> 1968;278:593&ndash;600, 652&ndash;657. doi:10.1056/NEJM196803212781204.</li>
+<li>Friedman C, Alderson PO, Austin JHM, Cimino JJ, Johnson SB. A general natural-language text processor for clinical radiology (MedLEE). <em>J Am Med Inform Assoc</em> 1994;1(2):161&ndash;174. doi:10.1136/jamia.1994.95236146.</li>
+<li>Savova GK, et al. Mayo clinical Text Analysis and Knowledge Extraction System (cTAKES). <em>J Am Med Inform Assoc</em> 2010;17(5):507&ndash;513. doi:10.1136/jamia.2009.001560.</li>
+<li>Bodenreider O, Cornet R, Vreeman DJ. Recent Developments in Clinical Terminologies &mdash; SNOMED CT, LOINC, and RxNorm. <em>Yearb Med Inform</em> 2018;27(1):129&ndash;139. doi:10.1055/s-0038-1667077.</li>
+<li>Bender D, Sartipi K. HL7 FHIR: An Agile and RESTful Approach to Healthcare Information Exchange. <em>IEEE CBMS</em> 2013:326&ndash;331. doi:10.1109/CBMS.2013.6627810.</li>
+<li>Safran C, Bloomrosen M, Hammond WE, et al. Toward a National Framework for the Secondary Use of Health Data: An AMIA White Paper. <em>J Am Med Inform Assoc</em> 2007;14(1):1&ndash;9. doi:10.1197/jamia.M2273.</li>
+<li>Rosenbloom ST, Denny JC, Xu H, et al. Data from clinical notes: a perspective on the tension between structure and flexible documentation. <em>J Am Med Inform Assoc</em> 2011;18(2):181&ndash;186. doi:10.1136/jamia.2010.007237.</li>
+<li>Mandel JC, Kreda DA, Mandl KD, Kohane IS, Ramoni RB. SMART on FHIR: a standards-based, interoperable apps platform for electronic health records. <em>J Am Med Inform Assoc</em> 2016;23(5):899&ndash;908. doi:10.1093/jamia/ocv189.</li>
+<li>Singh H, Meyer AND, Thomas EJ. The frequency of diagnostic errors in outpatient care. <em>BMJ Qual Saf</em> 2014;23(9):727&ndash;731. doi:10.1136/bmjqs-2013-002627.</li>
+<li>Slawomirski L, Kelly D, de Bienassis K, Kallas K-A, Klazinga N. The economics of diagnostic safety. <em>OECD Health Working Papers</em> 2025. doi:10.1787/fc61057a-en.</li>
+<li>Ambient AI Scribes in Clinical Practice: A Randomized Trial. <em>NEJM AI</em> 2025. doi:10.1056/AIoa2501000.</li>
+<li>Laufer M, Aperstein Y, Apartsin A. Reliable Extraction of Clinical Follow-Up Instructions: A Hybrid Neural-Symbolic Pipeline. <em>arXiv</em> 2026:2605.26560.</li>
+<li>Lee J, et al. BioBERT: a pre-trained biomedical language representation model. <em>Bioinformatics</em> 2020;36(4):1234&ndash;1240. doi:10.1093/bioinformatics/btz682.</li>
+<li>Alsentzer E, et al. Publicly Available Clinical BERT Embeddings. <em>Proc. 2nd Clinical NLP Workshop</em> 2019:72&ndash;78. arXiv:1904.03323.</li>
+<li>Yang X, et al. A large language model for electronic health records (GatorTron). <em>npj Digit Med</em> 2022;5:194. doi:10.1038/s41746-022-00742-2.</li>
+<li>Singhal K, et al. Large language models encode clinical knowledge (Med-PaLM). <em>Nature</em> 2023;620:172&ndash;180. doi:10.1038/s41586-023-06291-2.</li>
+<li>Soysal E, et al. CLAMP: a toolkit for efficiently building customized clinical NLP pipelines. <em>J Am Med Inform Assoc</em> 2018;25(3):331&ndash;336. doi:10.1093/jamia/ocx132.</li>
+<li>Sun W, Rumshisky A, Uzuner O. Evaluating temporal relations in clinical text: 2012 i2b2 Challenge. <em>J Am Med Inform Assoc</em> 2013;20(5):806&ndash;813. doi:10.1136/amiajnl-2013-001628.</li>
+<li>Styler WF, et al. Temporal Annotation in the Clinical Domain (THYME). <em>Trans Assoc Comput Linguist</em> 2014;2:143&ndash;154. doi:10.1162/tacl_a_00172.</li>
+<li>Bethard S, et al. SemEval-2016 Task 12: Clinical TempEval. <em>Proc. SemEval-2016</em> 2016:1052&ndash;1062. doi:10.18653/v1/S16-1165.</li>
+<li>Str&ouml;tgen J, Gertz M. Multilingual and cross-domain temporal tagging (HeidelTime). <em>Lang Resour Eval</em> 2013;47(2):269&ndash;298. doi:10.1007/s10579-012-9179-y.</li>
+<li>Chang AX, Manning CD. SUTime: A library for recognizing and normalizing time expressions. <em>Proc. LREC</em> 2012:3735&ndash;3740.</li>
+<li>Garcez A, Lamb LC. Neurosymbolic AI: the 3rd wave. <em>Artif Intell Rev</em> 2023;56:12387&ndash;12406. doi:10.1007/s10462-023-10448-w.</li>
+<li>Uzuner O, South BR, Shen S, DuVall SL. 2010 i2b2/VA challenge on concepts, assertions, and relations in clinical text. <em>J Am Med Inform Assoc</em> 2011;18(5):552&ndash;556. doi:10.1136/amiajnl-2011-000203.</li>
+<li>Peleg M. Computer-interpretable clinical guidelines: a methodological review. <em>J Biomed Inform</em> 2013;46(4):744&ndash;763. doi:10.1016/j.jbi.2013.06.009.</li>
+<li>Lenz R, Reichert M. Computerization of workflows, guidelines, and care pathways. <em>J Am Med Inform Assoc</em> 2011;18(6):738&ndash;748.</li>
+<li>Clinician perspectives on ambient AI scribes. <em>J Am Med Inform Assoc</em> 2026;33(2):255.</li>
+<li>Werthaim M, Kimhi M, Apartsin A, Aperstein Y. A benchmark for evaluating diagnostic questioning efficiency of LLMs in patient conversations. <em>Sci Rep</em> 2026;16:6121. doi:10.1038/s41598-026-37022-y.</li>
+<li>Ji Z, et al. Survey of Hallucination in Natural Language Generation. <em>ACM Comput Surv</em> 2023;55(12):248. doi:10.1145/3571730.</li>
+<li>Nori H, et al. Capabilities of GPT-4 on Medical Challenge Problems. <em>arXiv</em> 2023:2303.13375.</li>
+<li>Aperstein Y, Gottlib A, Benita G, Apartsin A. Explainable Semantic Text Relations: A Question-Answering Framework for Comparing Document Content. <em>Information</em> 2025;16(12):1090. doi:10.3390/info16121090.</li>
+</ol>
+</div>
+
+</main>
+</body>
+</html>
