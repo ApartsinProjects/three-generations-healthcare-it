@@ -16,7 +16,9 @@ The paper gives explicit criteria for what constitutes a generation, catalogs ea
 
 ## Contents
 
-- [`index.html`](index.html) — the paper (self-contained HTML; open in a browser or print to PDF).
+- [`index.html`](index.html) — the paper (self-contained HTML; also served via GitHub Pages).
+- [`three-generations-healthcare-it_2col.pdf`](three-generations-healthcare-it_2col.pdf) — two-column (arXiv-style) PDF.
+- [`three-generations-healthcare-it_2col.docx`](three-generations-healthcare-it_2col.docx) — two-column editable Word version.
 
 ## Status
 
