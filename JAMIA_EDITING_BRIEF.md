@@ -1,12 +1,35 @@
-# Editing Brief — JAMIA Perspective Submission
+# Editing Brief — JAMIA Submission
 
 > Editing brief for the final revision on the `jamia` branch. Transform the current
-> manuscript into a publication-ready **JAMIA Perspective** that introduces a durable
+> manuscript into a publication-ready JAMIA article that introduces a durable
 > conceptual framework for biomedical informatics. The paper should be remembered not for
 > a particular AI method, but for defining a **new computational layer of healthcare IT**
 > and a **reusable scientific vocabulary.** It should read as a mature scientific
 > perspective written for researchers, informaticians, standards experts, and healthcare
 > IT architects.
+
+## Target article type: Research and Applications (decided 2026-08-08)
+
+Although the original brief said "Perspective," we target JAMIA **Research and
+Applications**, because its definition explicitly covers "the formulation… of a new model"
+(an exact fit for the generational framework + ACR construct), whereas *Perspectives* is
+defined narrowly as "views of an organization or opinion leaders" (borderline type-fit) and
+caps at 2000 words. Hard constraints from the official OUP JAMIA General Instructions
+(https://academic.oup.com/jamia/pages/General_Instructions):
+
+- **Main text ≤ 4000 words** (excludes abstract, acknowledgments, references, supplements).
+- **Structured abstract ≤ 250 words** (JAMIA requires *structured*, not the ~200–250 word
+  unstructured abstract in the section below — follow the structured format).
+- **≤ 4 tables, ≤ 6 figures**; alt text required for every figure.
+- **References: unlimited, Vancouver numbered** (superscript, in order of appearance).
+- **Double-spaced Word document**; mandatory **Data Availability Statement**; **CRediT**
+  author-contribution taxonomy. ORCID likely required at submission (verify in the portal).
+- Reviewers expect evaluation substance: frame the follow-up-extraction study as a
+  **formative feasibility** demonstration and elevate the **proposed evaluation framework**
+  to a first-class contribution; do not oversell the numbers.
+
+(The 200–250 word / abstract-structure guidance below is superseded by the structured
+≤250-word requirement above; all other brief guidance still applies.)
 
 ## Overall positioning
 
