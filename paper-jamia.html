@@ -1,0 +1,353 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Three Generations of Healthcare IT (JAMIA Research and Applications)</title>
+<style>
+  :root{ --ink:#111; --muted:#5a6675; --line:#d7dee6; --accent:#0f4c81; --soft:#f5f8fb; }
+  *{ box-sizing:border-box; }
+  html{ font-family:"Times New Roman", Times, serif; font-size:11.5pt; }
+  body{ margin:0; background:#e9edf1; color:var(--ink); }
+  main{ max-width:19.5cm; margin:20px auto; background:#fff; padding:2.2cm 2.4cm;
+        box-shadow:0 1px 8px rgba(0,0,0,.22); line-height:1.5; text-align:justify; }
+
+  .head{ text-align:center; border-bottom:1.5px solid #10233b; padding-bottom:14px; margin-bottom:18px; }
+  h1{ font-size:18pt; line-height:1.24; margin:0 0 10px; color:#10233b; }
+  .authors{ font-size:11.5pt; margin:3px 0; }
+  .affil{ font-size:9.5pt; color:#3a4452; margin:3px 0; }
+  .venue{ font-size:9.5pt; color:#3a4452; margin-top:8px; }
+
+  .abstract{ margin:0 0 8px; font-size:10.4pt; line-height:1.5; text-align:left; }
+  .abstract .lbl{ display:block; text-align:center; font-variant:small-caps; letter-spacing:1px;
+                  font-size:10pt; color:#10233b; font-weight:700; margin-bottom:6px; }
+  .abstract p{ margin:0 0 5px; }
+  .abstract .field{ font-weight:700; color:#10233b; }
+  .kw{ font-size:9.5pt; color:var(--muted); margin:8px 0 0; }
+
+  h2{ font-size:13pt; color:#10233b; margin:20px 0 6px; border-bottom:1px solid var(--line); padding-bottom:3px; }
+  h3{ font-size:11.3pt; color:#10233b; margin:13px 0 3px; }
+  p{ margin:0 0 8px; }
+  strong{ color:#10233b; }
+  sup.c{ color:var(--accent); font-size:8.2pt; }
+  sup.nr{ color:#b00; font-size:8.2pt; }           /* pending new-reference marker */
+
+  .defn{ border:1px solid var(--line); border-left:3px solid #10233b; background:#fafbfc;
+         padding:9px 14px; margin:10px 0; font-size:10.4pt; text-align:left; }
+  .defn .dt{ font-weight:700; color:#10233b; }
+
+  .ex{ border:1px solid var(--line); border-left:3px solid var(--accent); background:#fbfdff;
+       padding:8px 12px; margin:8px 0; font-size:10.2pt; border-radius:0 4px 4px 0; text-align:left; }
+  .ex h4{ margin:0 0 4px; font-size:9.5pt; font-family:Arial, sans-serif; color:#33475b; text-transform:uppercase; letter-spacing:.5px; }
+  .ex .row{ margin:3px 0; }
+  .ex .row b{ font-family:Arial, sans-serif; font-size:9pt; color:#33475b; }
+  .rec{ font-family:Consolas, "Courier New", monospace; font-size:8.8pt; background:#eef3f8;
+        padding:1px 5px; border-radius:3px; display:inline-block; margin:1px 0; }
+
+  table.cmp{ width:100%; border-collapse:collapse; font-size:9.3pt; margin:14px 0;
+             border-top:1.5px solid #10233b; border-bottom:1.5px solid #10233b; hyphens:none; }
+  table.cmp th, table.cmp td{ padding:5px 9px; vertical-align:top; text-align:left; hyphens:none; word-break:normal; }
+  table.cmp th{ border-bottom:1px solid #10233b; font-family:Arial, sans-serif; font-size:8.8pt; color:#10233b; font-weight:700; }
+  table.cmp tr + tr td{ border-top:1px solid #eef1f4; }
+  table.cmp td.axis{ font-weight:700; width:17%; font-family:Arial, sans-serif; font-size:8.9pt; color:#33475b; }
+  table.cmp td.num, table.cmp th.num{ text-align:center; white-space:nowrap; }
+  .tcap{ font-size:9.2pt; color:#5a6675; font-family:Arial,sans-serif; margin-top:-6px; text-align:left; }
+
+  figure{ margin:16px 0; text-align:center; }
+  figcaption{ font-size:9.2pt; color:var(--muted); margin-top:6px; text-align:left; font-family:Arial, sans-serif; }
+
+  .pred .p{ margin:4px 0; padding-left:6px; }
+  .pred .p b{ color:#10233b; font-family:Arial, sans-serif; font-size:9.5pt; }
+
+  .meta-block{ font-size:9.6pt; color:#3a4452; }
+  .meta-block h2{ font-size:12pt; }
+
+  .refs{ font-size:8.8pt; line-height:1.34; }
+  .refs ol{ padding-left:20px; } .refs li{ margin-bottom:3px; }
+  .refs a{ color:var(--accent); text-decoration:none; }
+
+  @media print{
+    @page{ size:A4; margin:1.8cm; }
+    body{ background:#fff; } main{ max-width:none; margin:0; padding:0; box-shadow:none; }
+    h2{ break-after:avoid; } figure, table.cmp, .ex{ break-inside:avoid; }
+  }
+  @media (max-width:640px){ main{ padding:20px; } h1{ font-size:15pt; } }
+</style>
+</head>
+<body>
+<main>
+
+<div class="head">
+  <h1>Three Generations of Healthcare IT: From the Digital Record to the Computable Care Process</h1>
+  <p class="authors">Alexander Apartsin<sup>1</sup>, Yehudit Aperstein<sup>2</sup></p>
+  <p class="affil"><sup>1</sup>School of Computer Science, Holon Institute of Technology (HIT), Holon, Israel · <sup>2</sup>Intelligent Systems, Afeka Academic College of Engineering, Tel Aviv, Israel</p>
+  <p class="venue">Submitted to <em>JAMIA</em> as a Research and Applications article · Corresponding author: A. Apartsin</p>
+</div>
+
+<div class="abstract">
+<span class="lbl">Abstract</span>
+<p><span class="field">Objective.</span> Healthcare information technology is commonly organized by the technologies it adopts. We propose an alternative organizing principle, the unit of information a system makes computable, and use it to define a new computational layer whose atomic object is patient-specific clinical intent.</p>
+<p><span class="field">Materials and Methods.</span> We specify criteria for a computational layer of healthcare IT; apply them to derive three layers (record, clinical state, and a proposed layer of clinical intent); formalize the Actionable Clinical Record (ACR) as the atomic object of the third layer; propose an executable-correctness evaluation framework for ACR recovery; and assess feasibility on one minimal task, follow-up-instruction extraction.</p>
+<p><span class="field">Results.</span> The framework separates prescribed, observed, and intended process, and identifies the recovery of intended process from clinical communication as the capability existing standards do not provide. On the feasibility task, a hybrid neural-symbolic pipeline reaches action&ndash;time Pair F1 of 0.997 on a controlled benchmark, while general-purpose language models reach approximately 0.53.</p>
+<p><span class="field">Discussion.</span> The ACR is complementary to FHIR workflow resources, computer-interpretable guidelines, and process mining, which operationalize intent once it has been structured. Reliability, formulated as an explicit system property, rather than fluency, is the governing constraint.</p>
+<p><span class="field">Conclusion.</span> "Computable clinical intent" is a tractable research area with reusable constructs that subsequent work can extend, evaluate, or falsify.</p>
+<p class="kw"><b>Keywords:</b> electronic health records; clinical workflow; actionable clinical record; clinical intent; natural language processing; large language models; FHIR; care-process automation</p>
+</div>
+
+<h2>1. Introduction</h2>
+<p>Healthcare information technology can be analyzed more durably through the computational objects it supports than through the individual technologies it adopts, which change rapidly.<sup class="c">[1,2]</sup> Organized this way, we argue, the field&rsquo;s history has a compact form: the first generation made the clinical <em>record</em> computable, the second made the clinical <em>fact</em> computable, and a third, which we propose as an emerging layer, makes patient-specific clinical <em>intent</em> computable from clinical communication. We use <em>generation</em> to denote the historical emergence of a new computational layer; the resulting layers accumulate rather than replace one another.</p>
+<p>The motivation is a limitation that persists after the first two layers are in place. When a clinician records &ldquo;repeat the complete blood count in two weeks&rdquo; or &ldquo;refer to cardiology if symptoms persist,&rdquo; the instruction is decisive for care yet is captured only as narrative text; its action, timing, condition, and responsible actor remain outside the computable substrate. The downstream cost is measurable. Failure to follow up test results in ambulatory care is common,<sup class="c">[3]</sup> and only about one-third of specialist referrals reach a documented completed visit.<sup class="c">[4]</sup> Such loop-closure failures contribute to diagnostic error and avoidable harm.<sup class="c">[5,6]</sup></p>
+<p>This article makes four contributions. First, we state explicit criteria for a computational layer of healthcare IT and use them to organize the field into three layers (Section 2). Second, we formalize the Actionable Clinical Record (ACR) as the atomic object of the third layer, with a numbered definition and a maturity ladder (Section 6). Third, we specify an executable-correctness evaluation framework for ACR recovery (Section 8). Fourth, we report a formative feasibility instance and a structured research agenda (Sections 8&ndash;9). Throughout, we distinguish what we establish (a framework and a minimal feasibility result) from what we propose (an emerging layer and its research program).</p>
+
+<h2>2. A Framework of Computational Layers</h2>
+<p>We distinguish a computational layer from an incremental technological trend by five markers: a new atomic <em>unit of computability</em>; an <em>external driver</em> that makes the shift clinically or economically pressing; an <em>enabling technology</em>; a new <em>class of computation</em> the unit permits; and a <em>residual limitation</em> the layer does not resolve. The residual limitation of each layer motivates the computational object addressed by the next. A candidate layer that does not satisfy these markers is better interpreted as an incremental capability within an existing layer.</p>
+<p>Two properties of the framework require emphasis. First, the layers are <em>cumulative</em>: each subsumes the capabilities beneath it (Figure 1). Second, the layers differ in epistemic status. The first two are <em>retrospective abstractions</em> over a well-documented history of electronic health records;<sup class="c">[1,2]</sup> the third is a <em>prospective hypothesis</em> about an emerging capability, and we treat it as such. The framework is complementary to existing models: the data&ndash;information&ndash;knowledge hierarchy describes a generic ascent from data to knowledge,<sup class="c">[7]</sup> and digital-maturity models such as EMRAM measure how much capability an institution has adopted,<sup class="c">[8,9]</sup> whereas our concern is <em>which</em> clinical object becomes computable. Table 1 summarizes the three layers.</p>
+
+<figure>
+  <svg viewBox="0 0 640 250" xmlns="http://www.w3.org/2000/svg" width="100%" style="max-width:540px">
+    <g font-family="Arial, sans-serif">
+      <rect x="150" y="170" width="400" height="58" fill="#ffffff" stroke="#5a6675" stroke-width="1.2"/>
+      <text x="168" y="192" font-size="12" font-weight="700" fill="#10233b">Layer 1 &middot; the record</text>
+      <text x="168" y="208" font-size="10" fill="#3a4452">unit: record &middot; available to computers</text>
+      <text x="168" y="221" font-size="9" fill="#5a6675">EHR + database + messaging</text>
+      <rect x="150" y="104" width="400" height="58" fill="#ffffff" stroke="#5a6675" stroke-width="1.2"/>
+      <text x="168" y="126" font-size="12" font-weight="700" fill="#10233b">Layer 2 &middot; clinical state / fact</text>
+      <text x="168" y="142" font-size="10" fill="#3a4452">unit: fact &middot; interpretable by computers</text>
+      <text x="168" y="155" font-size="9" fill="#5a6675">terminologies + structured data + interoperability + NLP</text>
+      <rect x="150" y="38" width="400" height="58" fill="#eef3f8" stroke="#10233b" stroke-width="1.6"/>
+      <text x="168" y="60" font-size="12" font-weight="700" fill="#10233b">Layer 3 &middot; clinical intent / process <tspan font-weight="400" font-style="italic" fill="#5a6675">(proposed)</tspan></text>
+      <text x="168" y="76" font-size="10" fill="#3a4452">unit: intent &middot; operational by computers</text>
+      <text x="168" y="89" font-size="9" fill="#5a6675">language models + symbolic reasoning + workflow semantics</text>
+      <g stroke="#8a95a3" stroke-width="1.4" marker-end="url(#up)"><line x1="90" y1="200" x2="90" y2="70"/></g>
+      <defs><marker id="up" markerWidth="9" markerHeight="9" refX="3" refY="7" orient="auto"><path d="M3,0 L6,7 L0,7 Z" fill="#8a95a3"/></marker></defs>
+      <text x="78" y="135" font-size="8.6" fill="#8a95a3" transform="rotate(-90 78 135)" text-anchor="middle">each layer subsumes the one below</text>
+    </g>
+  </svg>
+  <figcaption><strong>Figure 1.</strong> The three computational layers of healthcare IT, organized by the unit of information each makes computable. Layers accumulate rather than replace; layer 3 is proposed. <em>Alt text:</em> three stacked boxes, record at the base, clinical state above it, and clinical intent at the top, with an upward arrow indicating that each layer subsumes the one below.</figcaption>
+</figure>
+
+<table class="cmp">
+  <tr><th>Axis</th><th>Layer 1: Record</th><th>Layer 2: Clinical state</th><th>Layer 3: Clinical intent (proposed)</th></tr>
+  <tr><td class="axis">Unit of computability</td><td>Clinical record</td><td>Discrete clinical fact</td><td>Intended clinical action (ACR)</td></tr>
+  <tr><td class="axis">Question answered</td><td>What was documented?</td><td>What is true about the patient?</td><td>What is supposed to happen?</td></tr>
+  <tr><td class="axis">External driver</td><td>Adoption policy and reimbursement</td><td>Interoperability and quality measurement</td><td>Care continuity and patient safety</td></tr>
+  <tr><td class="axis">Enabling technology</td><td>Transactional databases; messaging</td><td>Terminologies; structured data; interoperability; clinical NLP</td><td>Language models; symbolic reasoning; workflow semantics</td></tr>
+  <tr><td class="axis">Class of computation</td><td>Store, retrieve, exchange</td><td>Query, reason, predict</td><td>Schedule, coordinate, monitor, close</td></tr>
+  <tr><td class="axis">Canonical output</td><td>Document</td><td>Coded fact</td><td>Actionable Clinical Record</td></tr>
+  <tr><td class="axis">Residual limitation</td><td>Meaning remains in narrative</td><td>Intent remains in communication</td><td>Safe, reliable execution</td></tr>
+</table>
+<p class="tcap"><strong>Table 1.</strong> The three computational layers against the framework markers. Layers 1 and 2 are retrospective; layer 3 is proposed. The residual limitation of each layer motivates the unit of the next.</p>
+
+<h2>3. Generation One: The Clinical Record</h2>
+<p>The first layer digitized the clinical record and its transactions, replacing the paper chart with electronic capture, storage, retrieval, transmission, and transactional operations such as order entry and results routing. In the United States this was accelerated by the HITECH Act and the Meaningful Use program, which moved adoption from a minority of hospitals to near-universal within a decade.<sup class="c">[10,11]</sup> The intellectual antecedent is older: the problem-oriented medical record proposed that the chart be an organized, auditable structure rather than a chronological narrative.<sup class="c">[12]</sup> The enabling technology was the transactional database, without automated interpretation of clinical content: information was stored and moved, but its clinical meaning was not made computable across systems. That residual limitation motivated the second layer.</p>
+
+<h2>4. Generation Two: Computable Clinical State</h2>
+<p>The second layer made discrete clinical facts computable and exchangeable, turning the record into computable clinical <em>state</em>. Its enabling stack was broad and cannot be reduced to a single technique: structured data entry, controlled terminologies and ontologies,<sup class="c">[13]</sup> computerized order entry and coded problem and medication lists, clinical data warehouses, and interoperability standards<sup class="c">[14,15]</sup> were as consequential as language processing. Clinical natural-language processing was one route by which narrative facts entered this semantic layer: systems such as MedLEE and cTAKES parsed reports into coded concepts,<sup class="c">[16,17]</sup> complementing facts captured as structured data at the point of entry. Together these enabled the first broad wave of computation <em>on</em> clinical data: decision support, quality measurement, registries, and secondary research use.<sup class="c">[18]</sup> A persistent tension remained: encoding clinical meaning into structured fields captures facts, while much of the reasoning, and nearly all of the intended action, stays in narrative.<sup class="c">[19]</sup></p>
+
+<h2>5. The Remaining Computational Gap</h2>
+<p>The first two layers made clinical <em>state</em> computable but not the <em>intended actions</em> that constitute care. It would be inaccurate to say that healthcare IT cannot represent process: it represents process well once a person or system has structured it. FHIR represents patient-specific intent through <em>CarePlan</em> and <em>ServiceRequest</em> and generic plans through <em>PlanDefinition</em>;<sup class="c">[14]</sup> computer-interpretable guidelines encode executable protocols;<sup class="c">[20,21]</sup> and process-mining methods reconstruct pathways from event logs.<sup class="c">[22,23]</sup> These paradigms are complementary to the proposed layer and, in many cases, provide the infrastructure required to operationalize its outputs.</p>
+<p>The distinction that isolates the gap is among three kinds of process information (Table 2). <em>Prescribed</em> process is what should generally happen, the domain of guidelines and clinical decision support. <em>Observed</em> process is what actually happened, the domain of records and process mining. <em>Intended</em> process is what is supposed to happen for a specific patient, and it is expressed primarily in clinical communication. Existing paradigms address the prescribed and observed kinds. The capability that is missing is recovering intended process directly from ordinary communication and converting it into a computable, executable form. That capability is the subject of the third layer.</p>
+<table class="cmp">
+  <tr><th>Process type</th><th>Meaning</th><th>Typical source</th><th>Existing paradigm</th></tr>
+  <tr><td class="axis">Prescribed</td><td>What should generally happen</td><td>guideline / protocol</td><td>computer-interpretable guidelines; decision support</td></tr>
+  <tr><td class="axis">Observed</td><td>What actually happened</td><td>event log / EHR</td><td>process mining</td></tr>
+  <tr><td class="axis">Intended</td><td>What is supposed to happen for a specific patient</td><td>clinical communication</td><td>proposed third layer</td></tr>
+</table>
+<p class="tcap"><strong>Table 2.</strong> Three kinds of process information. The proposed third layer targets intended process, which the prescribed and observed paradigms do not recover from natural communication.</p>
+
+<h2>6. Generation Three: Computable Clinical Intent</h2>
+<p>We propose that the third layer makes patient-specific clinical intent computable by recovering it from clinical communication and representing it in a structured, executable form. To keep the argument precise, we use a single terminology throughout: clinical <em>communication</em> expresses clinical <em>intent</em>; an intent decomposes into intended <em>actions</em>; each action is represented computationally as an <em>Actionable Clinical Record</em>; a set of ACRs and related events constitutes a clinical <em>workflow</em>; and the enacted sequence over time is the <em>care process</em>.</p>
+
+<h3>6.1 The Actionable Clinical Record</h3>
+<div class="defn">
+  <span class="dt">Definition 1 (Actionable Clinical Record).</span> An Actionable Clinical Record is a source-grounded representation of a patient-specific intended clinical action, together with the semantic attributes required to interpret, execute, monitor, or audit that action. Formally, it is the tuple<br>
+  <span class="rec" style="margin-top:5px;">ACR = &lang; action, target, actor, temporal&nbsp;constraint, condition, dependency, status, provenance, confidence &rang;</span><br>
+  in which <em>action</em>, <em>status</em>, and <em>provenance</em> are required, and the remaining attributes are populated when the communication supports them.
+</div>
+<p>The attributes are defined semantically rather than as free text. <em>Action</em> is the intended clinical act; <em>target</em> is its object, linked where possible to a layer-2 coded concept; <em>actor</em> is the responsible party, which may be unresolved and flagged as such; <em>temporal constraint</em> is a normalized time semantics rather than a date alone, admitting absolute (&ldquo;within six months&rdquo;), relative (&ldquo;before the next visit&rdquo;), event-anchored (&ldquo;after finishing antibiotics&rdquo;), and recurring forms; <em>condition</em> is a clinical trigger or precondition; <em>dependency</em> encodes ordering relative to other records or results; <em>status</em> is the record&rsquo;s position on the maturity ladder below; <em>provenance</em> grounds the record in its source communication, span, speaker, and encounter; and <em>confidence</em> is a calibrated, per-attribute uncertainty used to route uncertain records to human review (Figure 2).</p>
+
+<figure>
+  <svg viewBox="0 0 700 128" xmlns="http://www.w3.org/2000/svg" width="100%" style="max-width:600px">
+    <g font-family="Arial, sans-serif" font-size="10.5">
+      <text x="350" y="18" fill="#33475b" text-anchor="middle" font-style="italic" font-size="11.5">the Actionable Clinical Record</text>
+      <rect x="16"  y="32" width="78" height="28" fill="#e7edf3" stroke="#10233b"/><text x="55"  y="50" fill="#10233b" text-anchor="middle">action</text>
+      <rect x="100" y="32" width="72" height="28" fill="#fff" stroke="#8a95a3"/><text x="136" y="50" fill="#33475b" text-anchor="middle">target</text>
+      <rect x="178" y="32" width="64" height="28" fill="#fff" stroke="#8a95a3"/><text x="210" y="50" fill="#33475b" text-anchor="middle">actor</text>
+      <rect x="248" y="32" width="118" height="28" fill="#fff" stroke="#8a95a3"/><text x="307" y="50" fill="#33475b" text-anchor="middle">temporal constr.</text>
+      <rect x="372" y="32" width="84" height="28" fill="#fff" stroke="#8a95a3"/><text x="414" y="50" fill="#33475b" text-anchor="middle">condition</text>
+      <rect x="462" y="32" width="102" height="28" fill="#fff" stroke="#8a95a3"/><text x="513" y="50" fill="#33475b" text-anchor="middle">dependency</text>
+      <rect x="570" y="32" width="70" height="28" fill="#e7edf3" stroke="#10233b"/><text x="605" y="50" fill="#10233b" text-anchor="middle">status</text>
+      <rect x="140" y="72" width="150" height="28" fill="#e7edf3" stroke="#10233b"/><text x="215" y="90" fill="#10233b" text-anchor="middle">provenance</text>
+      <rect x="300" y="72" width="130" height="28" fill="#fff" stroke="#8a95a3"/><text x="365" y="90" fill="#33475b" text-anchor="middle">confidence</text>
+      <text x="350" y="118" fill="#7b8794" text-anchor="middle" font-size="9">shaded = required (action, status, provenance) · outlined = populated when communicated</text>
+    </g>
+  </svg>
+  <figcaption><strong>Figure 2.</strong> The ACR schema. <em>Alt text:</em> nine labeled boxes forming the ACR tuple; action, status, and provenance are shaded to mark them as required; target, actor, temporal constraint, condition, dependency, and confidence are outlined as optional.</figcaption>
+</figure>
+
+<p>The third layer is a capability ladder rather than a single capability, and naming its rungs prevents both over- and under-claiming (Figure 3). Recognizing that a concept such as &ldquo;complete blood count&rdquo; appears in a note belongs to layer 2. Extracting &ldquo;repeat complete blood count&rdquo; as an intended action is a partial step; linking it to &ldquo;two weeks&rdquo; and a responsible actor produces an ACR; mapping it to a computed due date and a workflow object makes it executable; and detecting completion or escalation closes the loop. We label the rungs <em>mentioned, interpreted, actionable, executable, monitored,</em> and <em>closed</em>. The ladder also distinguishes an <em>actionable</em> record (a well-formed intent) from an <em>executable</em> one (an intent with enough resolved information to act on automatically), and it doubles as the ACR&rsquo;s <em>status</em> attribute.</p>
+<figure>
+  <svg viewBox="0 0 700 60" xmlns="http://www.w3.org/2000/svg" width="100%" style="max-width:600px">
+    <g font-family="Arial, sans-serif" font-size="9.6">
+      <line x1="24" y1="34" x2="676" y2="34" stroke="#c7d4e0" stroke-width="2"/>
+      <g text-anchor="middle">
+        <circle cx="60"  cy="34" r="5.5" fill="#c2ccd6"/><text x="60"  y="20" fill="#5a6675">mentioned</text>
+        <circle cx="182" cy="34" r="5.5" fill="#9db1c6"/><text x="182" y="20" fill="#33475b">interpreted</text>
+        <circle cx="304" cy="34" r="5.5" fill="#6f93b8"/><text x="304" y="20" fill="#1c3d5a">actionable</text>
+        <circle cx="426" cy="34" r="5.5" fill="#3f6f9f"/><text x="426" y="20" fill="#12395c">executable</text>
+        <circle cx="548" cy="34" r="5.5" fill="#1f527d"/><text x="548" y="20" fill="#0f4c81">monitored</text>
+        <circle cx="662" cy="34" r="6.5" fill="#10233b"/><text x="636" y="20" fill="#10233b" font-weight="700">closed</text>
+      </g>
+    </g>
+  </svg>
+  <figcaption><strong>Figure 3.</strong> The ACR maturity ladder. <em>Alt text:</em> six points along a line, from mentioned to closed, showing increasing computational maturity from concept recognition (layer 2) to closed-loop execution.</figcaption>
+</figure>
+
+<h3>6.2 From communication to workflow</h3>
+<p>The third layer functions as a bridge rather than a replacement for the electronic health record (Figure 4). Its input surface is the range of clinical communication: discharge instructions, patient&ndash;clinician conversation, nurse and emergency handovers, referral correspondence, portal messages, telephone calls, and ambient encounter transcripts. Its output is a set of ACRs that maps onto infrastructure the field already has, including FHIR <em>Task</em>, <em>ServiceRequest</em>, and <em>CarePlan</em>, schedulers, work queues, referral systems, and results management.<sup class="c">[14]</sup> Existing systems can execute instructions once they are structured; the capability the third layer adds is recovering those instructions when they originate as natural communication.</p>
+<figure>
+  <svg viewBox="0 0 700 210" xmlns="http://www.w3.org/2000/svg" width="100%" style="max-width:640px">
+    <g font-family="Arial, sans-serif" font-size="8.6">
+      <text x="118" y="14" text-anchor="middle" font-size="9.5" font-weight="700" fill="#10233b">Clinical communication</text>
+      <g fill="#fff" stroke="#8a95a3">
+        <rect x="20" y="24" width="196" height="19"/><rect x="20" y="47" width="196" height="19"/>
+        <rect x="20" y="70" width="196" height="19"/><rect x="20" y="93" width="196" height="19"/>
+        <rect x="20" y="116" width="196" height="19"/><rect x="20" y="139" width="196" height="19"/>
+        <rect x="20" y="162" width="196" height="19"/>
+      </g>
+      <g fill="#33475b" text-anchor="middle">
+        <text x="118" y="37">patient&ndash;clinician conversation</text><text x="118" y="60">discharge instructions</text>
+        <text x="118" y="83">nurse / emergency handover</text><text x="118" y="106">referral correspondence</text>
+        <text x="118" y="129">portal message</text><text x="118" y="152">telephone call</text>
+        <text x="118" y="175">ambient encounter transcript</text>
+      </g>
+      <rect x="268" y="70" width="164" height="66" fill="#e7edf3" stroke="#10233b" stroke-width="1.4"/>
+      <text x="350" y="96" text-anchor="middle" fill="#10233b" font-size="10" font-weight="700">Actionable Clinical</text>
+      <text x="350" y="110" text-anchor="middle" fill="#10233b" font-size="10" font-weight="700">Record layer</text>
+      <text x="350" y="126" text-anchor="middle" fill="#5a6675" font-size="8">extraction + symbolic reasoning</text>
+      <text x="582" y="14" text-anchor="middle" font-size="9.5" font-weight="700" fill="#10233b">Existing infrastructure</text>
+      <g fill="#fff" stroke="#8a95a3">
+        <rect x="484" y="24" width="196" height="19"/><rect x="484" y="47" width="196" height="19"/>
+        <rect x="484" y="70" width="196" height="19"/><rect x="484" y="93" width="196" height="19"/>
+        <rect x="484" y="116" width="196" height="19"/><rect x="484" y="139" width="196" height="19"/>
+        <rect x="484" y="162" width="196" height="19"/>
+      </g>
+      <g fill="#33475b" text-anchor="middle">
+        <text x="582" y="37">FHIR Task / ServiceRequest</text><text x="582" y="60">CarePlan</text>
+        <text x="582" y="83">scheduler</text><text x="582" y="106">decision support</text>
+        <text x="582" y="129">referral system</text><text x="582" y="152">results manager</text>
+        <text x="582" y="175">work queues</text>
+      </g>
+      <g stroke="#10233b" stroke-width="1.5" marker-end="url(#ah)"><line x1="220" y1="103" x2="264" y2="103"/><line x1="436" y1="103" x2="480" y2="103"/></g>
+      <defs><marker id="ah" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#10233b"/></marker></defs>
+    </g>
+  </svg>
+  <figcaption><strong>Figure 4.</strong> The ACR as the layer between clinical communication and existing workflow infrastructure. <em>Alt text:</em> communication sources on the left feed a central Actionable Clinical Record layer, which maps to existing infrastructure such as FHIR resources, schedulers, and referral and results systems on the right.</figcaption>
+</figure>
+
+<h3>6.3 Representative use cases</h3>
+<p>Follow-up is the most-documented case, but it is one member of a broader class of communication-derived process objects that share the ACR representation (Table 3). Recent developments in patient-message handling, incidental-finding follow-up, and ambient documentation indicate that these communication channels routinely carry clinically consequential actionable content.<sup class="c">[24]</sup></p>
+<table class="cmp">
+  <tr><th>Process object</th><th>Example communication</th><th>Salient ACR attributes</th></tr>
+  <tr><td class="axis" style="width:22%">Follow-up</td><td>&ldquo;Repeat CBC in two weeks.&rdquo;</td><td>action, temporal constraint, actor</td></tr>
+  <tr><td class="axis">Conditional escalation</td><td>&ldquo;Return immediately if fever develops.&rdquo;</td><td>action, condition, actor = patient</td></tr>
+  <tr><td class="axis">Medication transition</td><td>&ldquo;Reduce the dose after seven days.&rdquo;</td><td>action, target, temporal constraint</td></tr>
+  <tr><td class="axis">Handoff commitment</td><td>&ldquo;Cardiology to review the echo tomorrow.&rdquo;</td><td>action, actor = service, temporal constraint</td></tr>
+  <tr><td class="axis">Referral</td><td>&ldquo;Refer to dermatology for the lesion.&rdquo;</td><td>action, target, actor, dependency</td></tr>
+  <tr><td class="axis">Pending-result responsibility</td><td>&ldquo;I will follow up on the biopsy result.&rdquo;</td><td>action, actor, dependency</td></tr>
+  <tr><td class="axis">Self-management action</td><td>&ldquo;Check blood pressure daily and log it.&rdquo;</td><td>action, actor = patient, recurring temporal</td></tr>
+</table>
+<p class="tcap"><strong>Table 3.</strong> Communication-derived process objects sharing the ACR representation. Follow-up is the feasibility instance of Section 8; the others share the same schema.</p>
+
+<h3>6.4 Relation to existing paradigms</h3>
+<p>Two mature lines can be mistaken for the third layer. The first is clinical NLP. Concept extraction produces <em>facts</em>: it records that a concept appears, which populates the layer-2 representation.<sup class="c">[16,17,25]</sup> The third layer produces an executable <em>action</em>, at a reliability sufficient to act on rather than only to index; the object differs and the required reliability differs. Advances in language models improve the feasibility of recovering the relevant relations from heterogeneous clinical language, but improving clinical NLP is not, by itself, a layer transition. The second is computer-interpretable guidelines, which encode generic, population-level protocols as executable models;<sup class="c">[20,21]</sup> the third layer recovers patient-specific records from the communication of a particular encounter. The two are complementary: guidelines state what should generally happen, and the third layer captures what a clinician actually instructed for this patient.</p>
+
+<h2>7. Reliability and Architecture</h2>
+<p>A more capable text generator does not remove the requirements the third layer imposes. Auditability, verifiable temporal correctness, and a calibrated signal of when to defer are properties of the system&rsquo;s output contract rather than gaps in model capability: a system that acts on patient trajectories must establish that a computed date is correct and trace it to its source, however fluent the underlying model becomes. General-purpose language models interpret clinical language well but are less reliable where the layer is most demanding, in binding an action to its time and normalizing it into an executable schedule without omission or fabrication.<sup class="c">[26,27]</sup></p>
+<p><span class="dt" style="font-weight:700;color:#10233b;">Hybrid architecture.</span> These requirements motivate a decomposition in which learned components perform interpretation and explicit components perform verifiable structure.<sup class="c">[28]</sup> The argument for explicit reasoning is specific rather than general: some workflow semantics, including calendar arithmetic, dependency ordering, and status transitions, are formally specified, and explicit components can provide deterministic or independently verifiable transformations where those semantics hold. Learned extraction supplies candidate actions and arguments;<sup class="c">[29]</sup> deterministic reasoning resolves times and dependencies and computes due dates;<sup class="c">[30,31,32]</sup> and selective prediction routes uncertain cases to a clinician.<sup class="c">[33]</sup> Reliability, rather than scale, is the governing constraint on this architecture.</p>
+<p><span class="dt" style="font-weight:700;color:#10233b;">Provenance, calibration, and oversight.</span> We formulate reliability as an explicit system property expressed as invariants that a care-process system should satisfy: every acted-upon record traces to a source span, speaker, and encounter (provenance); deterministic semantics are computed rather than generated; a calibrated confidence accompanies each inferred attribute; the system may abstain rather than guess; higher-consequence actions receive proportionately tighter human review;<sup class="c">[33]</sup> an immutable trace links communication to action for audit;<sup class="c">[34]</sup> and the boundary between extracted and inferred content is explicit. These invariants connect the third layer to the earlier program of computer-interpretable guidelines and care pathways, which sought executable models of process but lacked a reliable path from free-text communication into those models.<sup class="c">[20,21]</sup></p>
+
+<h2>8. Evaluation Framework and Feasibility</h2>
+<p>Because the third layer acts, it should be evaluated on <em>executable correctness</em> rather than text overlap. We propose an evaluation framework for ACR recovery whose measures are reported separately: action detection; argument extraction; action&ndash;time, condition, and actor linking; temporal-normalization error; whole-record exact match; unsupported-action rate (fabricated commitments); omitted-action rate; calibration and selective-risk behavior; source-provenance accuracy; and, ultimately, loop-closure outcome. This framework, rather than any single score, is the contribution we intend other groups to adopt and extend.</p>
+<p>As a formative feasibility test of one minimal task, we summarize a study of follow-up-instruction extraction, in which a hybrid neural-symbolic pipeline, learned extraction of actions and time expressions with deterministic temporal normalization, was evaluated on a controlled 2000-note benchmark against generative baselines (Table 4).<sup class="c">[35]</sup> The generative models recognized actions accurately but performed poorly end to end, because argument linking and temporal reasoning remained implicit in generation. We state the standing of this result explicitly: it establishes the technical feasibility of one minimal Generation-3 task and does not, by itself, provide evidence for the three-layer framework. The framework&rsquo;s value rests on the constructs it defines and on their evaluation across tasks.</p>
+<table class="cmp">
+  <tr><th>Evaluation condition</th><th class="num">Hybrid pipeline</th><th class="num">Generative baseline</th></tr>
+  <tr><td class="axis">Pair F1, seen action types</td><td class="num">0.997</td><td class="num">~0.53</td></tr>
+  <tr><td class="axis">Pair F1, unseen action types</td><td class="num">0.986</td><td class="num">&mdash;</td></tr>
+  <tr><td class="axis">Action detection F1</td><td class="num">&gt;0.96</td><td class="num">&gt;0.96</td></tr>
+  <tr><td class="axis">Temporal-normalization error</td><td class="num">0 days</td><td class="num">&mdash;</td></tr>
+</table>
+<p class="tcap"><strong>Table 4.</strong> Follow-up extraction on a controlled 2000-note benchmark; generative baselines are GPT-4o-mini and LLaMA-3.<sup class="c">[35]</sup> Results are a formative feasibility demonstration of one minimal task.</p>
+
+<h2>9. Research Agenda</h2>
+<p>The framework defines a program in four domains, so that a study can locate its contribution precisely.</p>
+<div class="pred">
+  <div class="p"><b>Representation.</b> A consensus ACR ontology: an extensible taxonomy of clinical actions, attribute semantics, temporal and conditional constraint types, provenance, and reconciliation when communications revise or revoke a plan.</div>
+  <div class="p"><b>Inference and reliability.</b> ACR recovery from multilingual and multimodal communication; relation construction and temporal reasoning; cross-message reconciliation; calibrated uncertainty and abstention; and distinguishing patient from clinician intent.</div>
+  <div class="p"><b>Evaluation.</b> Authentic-data benchmarks beyond synthetic corpora; the executable-correctness framework of Section 8 adopted across tasks; and cross-institution and cross-language generalization.</div>
+  <div class="p"><b>Integration and impact.</b> ACR-to-FHIR mapping and write-back into scheduling, results-management, and referral systems;<sup class="c">[14,20]</sup> human-factors design of the review queue; regulatory classification; and whether closed-loop operation improves clinical outcomes.</div>
+</div>
+<p>Moving from synthetic corpora to de-identified real-world notes across languages and documentation styles is the central empirical risk, and safe deployment presupposes the provenance, abstention, and oversight invariants of Section 7. We also offer testable predictions whose failure would count against the framework: machine-actionable use of FHIR workflow resources will grow relative to free-text follow-up; evaluation will shift toward executable-correctness measures; reliable systems will expose source-linked, auditable records with selective human review rather than end-to-end generation; and ambient documentation will extend from producing notes to producing tasks and orders.<sup class="c">[24,36]</sup></p>
+
+<h2>10. Conclusion</h2>
+<p>Organized by the unit of information it makes computable, healthcare IT progresses from the record to the clinical fact and, we propose, to patient-specific clinical intent, with the layers accumulating rather than replacing one another. The problem that characterizes the proposed layer is not generating clinical text but recovering, from ordinary clinical communication, source-grounded and verifiable representations of intended action, which we formalize as the Actionable Clinical Record. The layer does not replace existing workflow infrastructure; it supplies the intent that allows natural communication to reach that infrastructure, under reliability formulated as an explicit system property. A formative feasibility instance shows that a minimal task is achievable, and convergent developments suggest the layer is emerging along several independent lines. We offer the framework, the ACR construct, the maturity ladder, the evaluation framework, and the research agenda as constructs that subsequent work can operationalize, evaluate, extend, or falsify.</p>
+
+<div class="meta-block">
+<h2>Data Availability</h2>
+<p>No new data were generated for this article. The feasibility results summarized in Table 4 derive from a companion study;<sup class="c">[35]</sup> details of that benchmark are reported therein.</p>
+
+<h2>Author Contributions (CRediT)</h2>
+<p>A. Apartsin: Conceptualization, Methodology, Writing &ndash; original draft. Y. Aperstein: Conceptualization, Supervision, Writing &ndash; review and editing.</p>
+
+<h2>Funding</h2>
+<p>None declared.</p>
+
+<h2>Conflicts of Interest</h2>
+<p>None declared.</p>
+</div>
+
+<div class="refs">
+<h2>References</h2>
+<ol>
+<li>Ammenwerth E, et al. Twenty-Five Years of Evolution and Hurdles in Electronic Health Records and Interoperability in Medical Research: Comprehensive Review. <em>J Med Internet Res</em> 2025;27:e59024. doi:10.2196/59024.</li>
+<li>Evans RS. Electronic Health Records: Then, Now, and in the Future. <em>Yearb Med Inform</em> 2016;25(Suppl 1):S48&ndash;S61. doi:10.15265/IYS-2016-s006.</li>
+<li>Callen JL, Westbrook JI, Georgiou A, Li J. Failure to follow-up test results for ambulatory patients: a systematic review. <em>J Gen Intern Med</em> 2012;27(10):1334&ndash;1348. doi:10.1007/s11606-011-1949-5.</li>
+<li>Patel MP, Schettini P, O'Leary CP, Bosworth HB, Anderson JB, Shah KP. Closing the Referral Loop: an Analysis of Primary Care Referrals to Specialists in a Large Health System. <em>J Gen Intern Med</em> 2018;33(5):715&ndash;721. doi:10.1007/s11606-018-4392-z.</li>
+<li>Singh H, Meyer AND, Thomas EJ. The frequency of diagnostic errors in outpatient care. <em>BMJ Qual Saf</em> 2014;23(9):727&ndash;731. doi:10.1136/bmjqs-2013-002627.</li>
+<li>Slawomirski L, Kelly D, de Bienassis K, Kallas K-A, Klazinga N. The economics of diagnostic safety. <em>OECD Health Working Papers</em> 2025. doi:10.1787/fc61057a-en.</li>
+<li>Rowley J. The wisdom hierarchy: representations of the DIKW hierarchy. <em>J Inf Sci</em> 2007;33(2):163&ndash;180. doi:10.1177/0165551506070706.</li>
+<li>Li R, Niu Y, Scott SR, et al. Using Electronic Medical Record Data for Research in a HIMSS Analytics EMRAM Stage 7 Hospital in Beijing: Cross-sectional Study. <em>JMIR Med Inform</em> 2021;9(8):e24405. doi:10.2196/24405.</li>
+<li>Duncan R, Eden R, Woods L, Wong I, Sullivan C. Synthesizing Dimensions of Digital Maturity in Hospitals: Systematic Review. <em>J Med Internet Res</em> 2022;24(3):e32994. doi:10.2196/32994.</li>
+<li>Blumenthal D, Tavenner M. The &ldquo;Meaningful Use&rdquo; Regulation for Electronic Health Records. <em>N Engl J Med</em> 2010;363:501&ndash;504. doi:10.1056/NEJMp1006114.</li>
+<li>Adler-Milstein J, et al. Electronic Health Record Adoption In US Hospitals: Progress Continues, But Challenges Persist. <em>Health Aff</em> 2015;34(12):2174&ndash;2180. doi:10.1377/hlthaff.2015.0992.</li>
+<li>Weed LL. Medical Records That Guide and Teach. <em>N Engl J Med</em> 1968;278:593&ndash;600. doi:10.1056/NEJM196803212781204.</li>
+<li>Bodenreider O, Cornet R, Vreeman DJ. Recent Developments in Clinical Terminologies &mdash; SNOMED CT, LOINC, and RxNorm. <em>Yearb Med Inform</em> 2018;27(1):129&ndash;139. doi:10.1055/s-0038-1667077.</li>
+<li>Bender D, Sartipi K. HL7 FHIR: An Agile and RESTful Approach to Healthcare Information Exchange. <em>IEEE CBMS</em> 2013:326&ndash;331. doi:10.1109/CBMS.2013.6627810.</li>
+<li>Mandel JC, Kreda DA, Mandl KD, Kohane IS, Ramoni RB. SMART on FHIR: a standards-based, interoperable apps platform for electronic health records. <em>J Am Med Inform Assoc</em> 2016;23(5):899&ndash;908. doi:10.1093/jamia/ocv189.</li>
+<li>Friedman C, Alderson PO, Austin JHM, Cimino JJ, Johnson SB. A general natural-language text processor for clinical radiology (MedLEE). <em>J Am Med Inform Assoc</em> 1994;1(2):161&ndash;174. doi:10.1136/jamia.1994.95236146.</li>
+<li>Savova GK, et al. Mayo clinical Text Analysis and Knowledge Extraction System (cTAKES). <em>J Am Med Inform Assoc</em> 2010;17(5):507&ndash;513. doi:10.1136/jamia.2009.001560.</li>
+<li>Safran C, Bloomrosen M, Hammond WE, et al. Toward a National Framework for the Secondary Use of Health Data: An AMIA White Paper. <em>J Am Med Inform Assoc</em> 2007;14(1):1&ndash;9. doi:10.1197/jamia.M2273.</li>
+<li>Rosenbloom ST, Denny JC, Xu H, et al. Data from clinical notes: a perspective on the tension between structure and flexible documentation. <em>J Am Med Inform Assoc</em> 2011;18(2):181&ndash;186. doi:10.1136/jamia.2010.007237.</li>
+<li>Peleg M. Computer-interpretable clinical guidelines: a methodological review. <em>J Biomed Inform</em> 2013;46(4):744&ndash;763. doi:10.1016/j.jbi.2013.06.009.</li>
+<li>Lenz R, Reichert M. IT support for healthcare processes &ndash; premises, challenges, perspectives. <em>Data Knowl Eng</em> 2007;61(1):39&ndash;58. doi:10.1016/j.datak.2006.04.007.</li>
+<li>van der Aalst W. <em>Process Mining: Data Science in Action.</em> 2nd ed. Berlin: Springer; 2016. doi:10.1007/978-3-662-49851-4.</li>
+<li>Rojas E, Munoz-Gama J, Sep&uacute;lveda M, Capurro D. Process mining in healthcare: A literature review. <em>J Biomed Inform</em> 2016;61:224&ndash;236. doi:10.1016/j.jbi.2016.04.007.</li>
+<li>Kanaparthy NS, Bakare T, Diao Z, et al. Real-World Evidence Synthesis of Digital Scribes Using Ambient Listening and Generative Artificial Intelligence for Clinician Documentation Workflows: Rapid Review. <em>JMIR AI</em> 2025;4:e76743. doi:10.2196/76743.</li>
+<li>Soysal E, et al. CLAMP: a toolkit for efficiently building customized clinical NLP pipelines. <em>J Am Med Inform Assoc</em> 2018;25(3):331&ndash;336. doi:10.1093/jamia/ocx132.</li>
+<li>Ji Z, et al. Survey of Hallucination in Natural Language Generation. <em>ACM Comput Surv</em> 2023;55(12):248. doi:10.1145/3571730.</li>
+<li>Nori H, et al. Capabilities of GPT-4 on Medical Challenge Problems. <em>arXiv</em> 2023:2303.13375.</li>
+<li>Garcez A, Lamb LC. Neurosymbolic AI: the 3rd wave. <em>Artif Intell Rev</em> 2023;56:12387&ndash;12406. doi:10.1007/s10462-023-10448-w.</li>
+<li>Uzuner O, South BR, Shen S, DuVall SL. 2010 i2b2/VA challenge on concepts, assertions, and relations in clinical text. <em>J Am Med Inform Assoc</em> 2011;18(5):552&ndash;556. doi:10.1136/amiajnl-2011-000203.</li>
+<li>Sun W, Rumshisky A, Uzuner O. Evaluating temporal relations in clinical text: 2012 i2b2 Challenge. <em>J Am Med Inform Assoc</em> 2013;20(5):806&ndash;813. doi:10.1136/amiajnl-2013-001628.</li>
+<li>Str&ouml;tgen J, Gertz M. Multilingual and cross-domain temporal tagging (HeidelTime). <em>Lang Resour Eval</em> 2013;47(2):269&ndash;298. doi:10.1007/s10579-012-9179-y.</li>
+<li>Chang AX, Manning CD. SUTime: A library for recognizing and normalizing time expressions. <em>Proc. LREC</em> 2012:3735&ndash;3740.</li>
+<li>Goddard K, Roudsari A, Wyatt JC. Automation bias: a systematic review of frequency, effect mediators, and mitigators. <em>J Am Med Inform Assoc</em> 2012;19(1):121&ndash;127. doi:10.1136/amiajnl-2011-000089.</li>
+<li>Aperstein Y, Gottlib A, Benita G, Apartsin A. Explainable Semantic Text Relations: A Question-Answering Framework for Comparing Document Content. <em>Information</em> 2025;16(12):1090. doi:10.3390/info16121090.</li>
+<li>Laufer M, Aperstein Y, Apartsin A. Reliable Extraction of Clinical Follow-Up Instructions: A Hybrid Neural-Symbolic Pipeline. <em>arXiv</em> 2026:2605.26560.</li>
+<li>Van Tiem J, Cramer E, Iverson C, et al. Listening to the note: clinician perspectives on ambient artificial intelligence scribes in medical documentation. <em>J Am Med Inform Assoc</em> 2026;33(2):255&ndash;262. doi:10.1093/jamia/ocaf214.</li>
+</ol>
+</div>
+
+</main>
+</body>
+</html>
