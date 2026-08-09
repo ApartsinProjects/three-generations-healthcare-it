@@ -3,6 +3,8 @@ Intelligent Systems, Afeka Academic College of Engineering
 218 Bnei Efraim St., Tel-Aviv 6910717, Israel
 apersteiny@afeka.ac.il
 
+9 August 2026
+
 The Editors-in-Chief
 *Journal of the American Medical Informatics Association (JAMIA)*
 
@@ -12,9 +14,11 @@ Dear Editors,
 
 We are pleased to submit the enclosed manuscript for consideration as a **Perspective** in *JAMIA*. The article proposes a framework and a shared vocabulary for a research direction we believe is now emerging in biomedical informatics: making patient-specific clinical **intent** computable directly from ordinary clinical communication.
 
-Our central argument is that healthcare IT is most durably understood not through the technologies it adopts but through the **unit of information it makes computable**. Read this way, the field has progressed from the computable *record* to the computable clinical *fact* (state), and we propose a third computational layer whose object is patient-specific clinical *intent*. We formalize the atomic object of that layer as the **Actionable Clinical Record (ACR)**, a source-grounded representation of an intended clinical action with the temporal, conditional, responsibility, dependency, status, provenance, and confidence semantics needed to interpret, execute, monitor, and audit it.
+Our central argument is that healthcare IT is most durably understood not through the technologies it adopts but through the **unit of information it makes computable**. Read this way, the field has progressed from the computable *record* to the computable clinical *fact* (state), and we propose a third computational layer whose object is patient-specific clinical *intent*. We formalize the atomic object of that layer as the **Actionable Clinical Record (ACR)**, a source-grounded representation of an intended clinical action as the tuple ⟨action, target, actor, temporal constraint, condition, dependency, status, provenance, confidence⟩, carrying the semantics needed to interpret, execute, monitor, and audit it.
 
 We think this fits *JAMIA*'s Perspective genre because the contribution is conceptual and forward-looking, a proposed framework, a reusable construct, an evaluation framework, and a set of falsifiable predictions, rather than a completed empirical study. The manuscript is deliberately careful about its boundaries. We do **not** claim that existing standards cannot represent care processes: FHIR workflow resources, computer-interpretable guidelines, and process mining already do so once a process has been structured, and we present them as complementary downstream infrastructure. The capability we localize is upstream and currently unmet: recovering incompletely expressed, patient-specific intent from natural communication and converting it into computable, executable records. We include an explicit ACR-to-FHIR field mapping to show that the ACR sits upstream of those resources rather than competing with them.
+
+We are also careful to distinguish the ACR from adjacent clinical-NLP work. Established action-item, medical-order, and decision-extraction efforts recover useful content from notes and conversation, but typically into flat schemas evaluated by lexical overlap; the ACR instead requires the actor, temporal, conditional, and dependency structure needed to *execute* an intention, and we propose evaluating it for **executable correctness** rather than text overlap. That distinction, not the existence of the individual fields, is the contribution.
 
 We are equally explicit about evidence. The manuscript is a framework and a vocabulary; a companion feasibility study is summarized as an existence proof for one narrow task (follow-up-instruction extraction), not as validation of the framework itself, and clinical utility and safety are stated as prospective hypotheses with human confirmation as the expected operating mode.
 
