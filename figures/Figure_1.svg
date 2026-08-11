@@ -1,0 +1,19 @@
+<svg viewBox="0 0 640 250" xmlns="http://www.w3.org/2000/svg" width="100%" style="max-width:540px">
+    <g font-family="Arial, sans-serif">
+      <rect x="150" y="170" width="400" height="58" fill="#ffffff" stroke="#5a6675" stroke-width="1.2"/>
+      <text x="168" y="192" font-size="12" font-weight="700" fill="#10233b">Layer 1 · the record</text>
+      <text x="168" y="208" font-size="10" fill="#3a4452">unit: record · available to computers</text>
+      <text x="168" y="221" font-size="9" fill="#5a6675">EHR + database + messaging</text>
+      <rect x="150" y="104" width="400" height="58" fill="#ffffff" stroke="#5a6675" stroke-width="1.2"/>
+      <text x="168" y="126" font-size="12" font-weight="700" fill="#10233b">Layer 2 · clinical state (fact)</text>
+      <text x="168" y="142" font-size="10" fill="#3a4452">unit: fact · interpretable by computers</text>
+      <text x="168" y="155" font-size="9" fill="#5a6675">terminologies + structured data + interoperability + NLP</text>
+      <rect x="150" y="38" width="400" height="58" fill="#eef3f8" stroke="#10233b" stroke-width="1.6"/>
+      <text x="168" y="60" font-size="12" font-weight="700" fill="#10233b">Layer 3 · clinical intent <tspan font-weight="400" font-style="italic" fill="#5a6675">(proposed)</tspan></text>
+      <text x="168" y="76" font-size="10" fill="#3a4452">unit: intended action (ACR) · operational by computers</text>
+      <text x="168" y="89" font-size="9" fill="#5a6675">language models + symbolic reasoning + workflow semantics</text>
+      <line x1="122" y1="214" x2="122" y2="52" stroke="#8a95a3" stroke-width="1.8"/>
+      <polygon points="122,40 114,56 130,56" fill="#8a95a3"/>
+      <text x="96" y="133" font-size="10.5" fill="#5a6675" transform="rotate(-90 96 133)" text-anchor="middle">each layer builds on the one below</text>
+    </g>
+  </svg>

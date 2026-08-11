@@ -1,0 +1,36 @@
+<svg viewBox="0 0 700 210" xmlns="http://www.w3.org/2000/svg" width="100%" style="max-width:640px">
+    <g font-family="Arial, sans-serif" font-size="8.6">
+      <text x="118" y="14" text-anchor="middle" font-size="9.5" font-weight="700" fill="#10233b">Clinical communication</text>
+      <g fill="#fff" stroke="#8a95a3">
+        <rect x="20" y="24" width="196" height="19"/><rect x="20" y="47" width="196" height="19"/>
+        <rect x="20" y="70" width="196" height="19"/><rect x="20" y="93" width="196" height="19"/>
+        <rect x="20" y="116" width="196" height="19"/><rect x="20" y="139" width="196" height="19"/>
+        <rect x="20" y="162" width="196" height="19"/>
+      </g>
+      <g fill="#33475b" text-anchor="middle">
+        <text x="118" y="37">patient–clinician conversation</text><text x="118" y="60">discharge instructions</text>
+        <text x="118" y="83">nurse / emergency handover</text><text x="118" y="106">referral correspondence</text>
+        <text x="118" y="129">portal message</text><text x="118" y="152">telephone call</text>
+        <text x="118" y="175">ambient encounter transcript</text>
+      </g>
+      <rect x="268" y="70" width="164" height="66" fill="#e7edf3" stroke="#10233b" stroke-width="1.4"/>
+      <text x="350" y="96" text-anchor="middle" fill="#10233b" font-size="10" font-weight="700">Clinical-intent layer</text>
+      <text x="350" y="110" text-anchor="middle" fill="#10233b" font-size="10" font-weight="700">(ACR representations)</text>
+      <text x="350" y="126" text-anchor="middle" fill="#5a6675" font-size="8">recovery + structured reasoning</text>
+      <text x="582" y="14" text-anchor="middle" font-size="9.5" font-weight="700" fill="#10233b">Existing infrastructure</text>
+      <g fill="#fff" stroke="#8a95a3">
+        <rect x="484" y="24" width="196" height="19"/><rect x="484" y="47" width="196" height="19"/>
+        <rect x="484" y="70" width="196" height="19"/><rect x="484" y="93" width="196" height="19"/>
+        <rect x="484" y="116" width="196" height="19"/><rect x="484" y="139" width="196" height="19"/>
+        <rect x="484" y="162" width="196" height="19"/>
+      </g>
+      <g fill="#33475b" text-anchor="middle">
+        <text x="582" y="37">FHIR Task / ServiceRequest</text><text x="582" y="60">CarePlan</text>
+        <text x="582" y="83">scheduler</text><text x="582" y="106">decision support</text>
+        <text x="582" y="129">referral system</text><text x="582" y="152">results manager</text>
+        <text x="582" y="175">work queues</text>
+      </g>
+      <g stroke="#10233b" stroke-width="1.5" marker-end="url(#ah)"><line x1="220" y1="103" x2="264" y2="103"/><line x1="436" y1="103" x2="480" y2="103"/></g>
+      <defs><marker id="ah" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#10233b"/></marker></defs>
+    </g>
+  </svg>
