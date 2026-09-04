@@ -2,4 +2,4 @@ Recovering executable clinical intent from communication is an open AI problem
 The Actionable Clinical Record is a FHIR-aligned recovery target, not a new format
 Set-level reasoning (scheduling, contradiction, consistency) is the core computation
 Third-layer outputs are scored on executable correctness, not text overlap
-Models label action type well but recover full structure only 18-35% of the time
+Models label action type well but recover the closed fields jointly only 18-35%
