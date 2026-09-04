@@ -23,6 +23,13 @@ Source: journal Guide for Authors (captured to AIIM_guide_for_authors.txt). Jour
 - CRediT: present. Funding/COI: present.
 - TODO before submission: (1) add Highlights file (3-5 bullets <=85 chars); (2) decide genAI-use declaration; (3) resolve the 2 pending FHIR-adoption citations [NR1],[NR2]; (4) build LaTeX (els-cas) + Word from index.html.
 
+## Official AIIM template & tool links (verified from the journal's own Guide for Authors)
+- **LaTeX template AIIM links to**: `els-cas-templates.zip` via https://assets.ctfassets.net/o78em1y1w4i4/5uFmLZJTPDMAUjFnHRpjj8/6f19a979146eb93263763d87a894ab0d/els-cas-templates.zip  -> **byte-identical (md5 7753a16940bccbde50b20cc69899e8c1) to the CTAN copy in templates/**. So the Elsevier **CAS** template IS the official AIIM template. Guide wording: "We encourage you use our LaTeX template when preparing a LaTeX submission."
+- **LaTeX submission instructions**: https://www.elsevier.com/latex
+- **Highlights tool/examples**: https://www.elsevier.com/researcher/author/tools-and-resources/highlights  (3-5 bullets, <=85 chars each, separate editable file with "highlights" in the filename)
+- **Word**: NO journal-specific Word template for AIIM. Word `.doc/.docx` is accepted for submission; the only Elsevier `.docx` templates on the page are for *other* article types (Data in Brief, MethodsX), not AIIM research/position papers.
+- **References**: no proprietary reference-manager template needed; follow the Vancouver numbered examples in the guide (which the manuscript already matches).
+
 ## Templates downloaded (templates/)
-- `elsarticle/` - classic Elsevier class + template-num/harv/num-names .tex
-- `els-cas-templates/` - current Elsevier "CAS" class: cas-sc (single-column) and cas-dc (double-column) templates + sample PDFs. Elsevier's current recommended template.
+- `els-cas-templates/` - **the official AIIM template** (Elsevier "CAS" class): `cas-sc` (single-column) and `cas-dc` (double-column) `.tex` + `.cls` + sample PDFs + `cas-model2-names.bst` (numbered). Use **cas-sc** (single-column) for a Position Paper.
+- `elsarticle/` - classic Elsevier class (fallback), + template-num/harv/num-names `.tex`.
