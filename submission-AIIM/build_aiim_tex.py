@@ -107,6 +107,45 @@ def wrap_bib_urls(text):
         return tok if url.startswith("\\url{") else "\\url{" + url + "}" + trail
     return text[:i] + re.sub(r'https?://\S+', w, bib) + text[j:]
 mt = wrap_bib_urls(mt)
+
+# back-matter: unnumber the trailing declaration sections (Elsevier convention)
+for h in ["Data Availability", "Author Contributions (CRediT)", "Funding", "Conflicts of Interest"]:
+    mt = mt.replace("\\section{" + h + "}", "\\section*{" + h + "}", 1)
+# drop the duplicate "References" section header (thebibliography prints its own)
+mt = re.sub(r'\\section\{References\}(\\label\{[^}]*\})?\s*', '', mt, count=1)
+# unnumber the two worked-example headings (avoids the ugly 7.0.1 artifact)
+mt = mt.replace("\\subsubsection{Worked example:", "\\subsubsection*{Worked example:", 1)
+mt = mt.replace("\\subsubsection{Worked scoring:", "\\subsubsection*{Worked scoring:", 1)
+
+# widen the two horizontal schematic figures to full page width for legibility
+def widen_figure(text, figfile):
+    i = text.find(figfile)
+    if i < 0: return text
+    start = text.rfind("\\begin{figure}", 0, i)
+    end = text.find("\\end{figure}", i) + len("\\end{figure}")
+    block = text[start:end]
+    nb = (block.replace("\\begin{figure}[tbp]", "\\begin{figure*}[t]", 1)
+               .replace("width=\\linewidth", "width=\\textwidth", 1)
+               .replace("\\end{figure}", "\\end{figure*}", 1))
+    return text[:start] + nb + text[end:]
+mt = widen_figure(mt, "Figure_2.pdf")
+mt = widen_figure(mt, "Figure_3.pdf")
+
+# widen the one remaining single-column data table (Table 4, 5 columns) to full
+# width so it matches Tables 1-3/5 and stops spilling into the margin
+def widen_table_caption(text, capmarker):
+    i = text.find(capmarker)
+    if i < 0: return text
+    start = max(text.rfind("\\begin{table}[ht]", 0, i), text.rfind("\\begin{table}[tbp]", 0, i))
+    if start < 0: return text
+    end = text.find("\\end{table}", i) + len("\\end{table}")
+    block = text[start:end]
+    nb = (re.sub(r'\\begin\{table\}\[(ht|tbp)\]', r'\\begin{table*}[t]', block, count=1)
+              .replace("\\begin{tabularx}{\\linewidth}", "\\begin{tabularx}{\\textwidth}", 1)
+              .replace("\\end{table}", "\\end{table*}", 1))
+    return text[:start] + nb + text[end:]
+mt = widen_table_caption(mt, "Table 4.}")
+
 (BUILD/"main.tex").write_text(mt, encoding="utf-8")
 print("C. main.tex patched; title set:", TITLE[:40], "... xurl:", "\\usepackage{xurl}" in mt,
       "table*:", "\\begin{table*}[t]" in mt)
