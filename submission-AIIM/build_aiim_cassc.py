@@ -62,7 +62,6 @@ FRONT = r"""\documentclass[a4paper,fleqn]{cas-sc}
 \shortauthors{Apartsin and Aperstein}
 \title[mode=title]{%TITLE%}
 \author[1]{Alexander Apartsin}[orcid=0009-0000-7007-3529]
-\ead{alexanderap@hit.ac.il}
 \credit{Conceptualization, Methodology, Writing -- original draft}
 \affiliation[1]{organization={School of Computer Science, Faculty of Sciences, Holon Institute of Technology (HIT)},
   addressline={52 Golomb St.}, city={Holon}, postcode={5810201}, country={Israel}}
