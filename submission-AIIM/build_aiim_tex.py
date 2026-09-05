@@ -60,6 +60,10 @@ def run(cmd):
         print(r.stdout[-2000:]); print(r.stderr[-2000:]); sys.exit(1)
     return r.stdout
 
+# clean stale generated files so convert/pack never accumulate into a dirty dir
+for f in ["main.tex", "body.tex", "bibliography.tex", "html2tex_compat.tex", "meta.json",
+          "main.aux", "main.log", "main.out"]:
+    (BUILD/f).unlink(missing_ok=True)
 run([PY, str(SKILL/"scripts"/"convert_to_tex.py"), "--input", str(SRC/"paper_build.html"),
      "--out-dir", str(BUILD), "--columns", "2", "--citations", "numeric"])
 run([PY, str(SKILL/"scripts"/"pack_tmlr_bundle.py"), "--in-dir", str(BUILD),
@@ -67,6 +71,12 @@ run([PY, str(SKILL/"scripts"/"pack_tmlr_bundle.py"), "--in-dir", str(BUILD),
 
 # ---- C. patch main.tex ----
 mt = (BUILD/"main.tex").read_text(encoding="utf-8")
+# the packer emits a trailing duplicate of the body/bibliography after the first
+# \end{document}; the compiler ignores it, but keep the .tex clean by truncating
+# at the first \end{document} (the first document is the complete paper + bib).
+_ed = "\\end{document}"
+if mt.count(_ed) > 1:
+    mt = mt[:mt.index(_ed) + len(_ed)] + "\n"
 # title (function repl to avoid backslash-escape parsing)
 mt = re.sub(r'\\title\{[^}]*\}', lambda m: '\\title{' + TITLE + '}', mt, count=1)
 # frontmatter graft + strip leaked header: replace from \author{Anonymous Authors} up to first \section{Introduction}
@@ -104,4 +114,14 @@ print("C. main.tex patched; title set:", TITLE[:40], "... xurl:", "\\usepackage{
 # ---- D. compile ----
 run([PY, str(SKILL/"scripts"/"compile_local.py"), "--in-dir", str(BUILD),
      "--auto-patch", "--pdflatex", PDFLATEX])
-print("D. compiled OK")
+# enforce a single document (defensive: drop any trailing duplicate the toolchain
+# may leave after the first \end{document}), recompile if we had to cut.
+mt = (BUILD/"main.tex").read_text(encoding="utf-8")
+if mt.count(_ed) > 1:
+    mt = mt[:mt.index(_ed) + len(_ed)] + "\n"
+    (BUILD/"main.tex").write_text(mt, encoding="utf-8")
+    run([PY, str(SKILL/"scripts"/"compile_local.py"), "--in-dir", str(BUILD),
+         "--auto-patch", "--pdflatex", PDFLATEX])
+mt = (BUILD/"main.tex").read_text(encoding="utf-8")
+assert mt.count(_ed) == 1 and mt.count("\\begin{thebibliography}") == 1, "duplicate document survived"
+print("D. compiled OK; single document:", mt.count("\\bibitem{ref"), "bibitems")
