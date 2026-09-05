@@ -1,0 +1,39 @@
+\documentclass[a4paper,fleqn]{cas-sc}
+\usepackage{hyperref}
+\usepackage{xurl}
+\usepackage{newtxtext}% scalable text font (microtype expansion needs scalable fonts);
+% newtxmath is NOT loaded: cas-sc already declares math fonts and adding it overflows
+% the symbol-font limit ("Too many symbol fonts declared").
+\input{html2tex_compat.tex}
+\captionsetup{labelformat=empty,labelsep=none}% captions carry their own "Figure N." label
+
+\begin{document}
+\shorttitle{Computable Clinical Intent}
+\shortauthors{Apartsin and Aperstein}
+\title[mode=title]{Computable Clinical Intent: Recovering Executable Care Actions from Unstructured Clinical Communication}
+\author[1]{Alexander Apartsin}[orcid=0009-0000-7007-3529]
+\ead{alexanderap@hit.ac.il}
+\credit{Conceptualization, Methodology, Writing -- original draft}
+\affiliation[1]{organization={School of Computer Science, Faculty of Sciences, Holon Institute of Technology (HIT)},
+  addressline={52 Golomb St.}, city={Holon}, postcode={5810201}, country={Israel}}
+\author[2]{Yehudit Aperstein}[orcid=0000-0001-6390-9463]
+\cormark[1]
+\ead{apersteiny@afeka.ac.il}
+\credit{Conceptualization, Supervision, Writing -- review and editing}
+\affiliation[2]{organization={Intelligent Systems, Afeka Academic College of Engineering},
+  addressline={218 Bnei Efraim St.}, city={Tel-Aviv}, postcode={6910717}, country={Israel}}
+\cortext[1]{Corresponding author}
+\begin{abstract}
+Much of what should happen next is decided in conversation and prose, not structured data. When a clinician writes ``repeat the complete blood count in two weeks,'' the intended action and its timing remain in narrative text, and the accountable owner goes unstated. Leaving intent in free text is implicated in failed test-result follow-up, unclosed referral loops, and avoidable diagnostic harm. We take the position that recovering patient-specific intended actions from unstructured clinical communication, in a form a system can schedule, monitor, and close, is a distinct and tractable problem for artificial intelligence in medicine. It goes beyond clinical language processing, which scores fields one at a time, and complements interoperability standards, which represent intent once structured. We organize health information technology into three layers by the unit each makes computable: the record, the clinical fact, and the intended action. We define the Actionable Clinical Record (ACR): a source-grounded representation of one intended action whose target state is executable readiness, upstream of FHIR workflow resources, not a new interchange format. Recovery has two sides: extracting each action, and reasoning over the resulting set through scheduling, contradiction detection, and consistency checking. Because temporal semantics must be computed and traceability kept source-grounded, not generated, we argue for a hybrid neuro-symbolic architecture with output invariants, and evaluation on executable correctness rather than text overlap. A worked example and two separately reported companion studies support record-level tractability. The ACR and its evaluation framework are offered for the community to build on, evaluate, or refute.
+\end{abstract}
+\begin{keywords}
+clinical intent \sep actionable clinical record \sep clinical natural language processing \sep neuro-symbolic reasoning \sep temporal reasoning \sep FHIR \sep workflow automation
+\end{keywords}
+\maketitle
+
+\input{body_clean.tex}
+
+\FloatBarrier
+\input{bibliography.tex}
+
+\end{document}
