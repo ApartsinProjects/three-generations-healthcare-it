@@ -62,16 +62,9 @@ FRONT = r"""\documentclass[a4paper,fleqn]{cas-sc}
 \shortauthors{Apartsin and Aperstein}
 \title[mode=title]{%TITLE%}
 \author[1]{Alexander Apartsin}[orcid=0009-0000-7007-3529]
-\credit{Conceptualization, Methodology, Writing -- original draft}
-\affiliation[1]{organization={School of Computer Science, Faculty of Sciences, Holon Institute of Technology (HIT)},
-  addressline={52 Golomb St.}, city={Holon}, postcode={5810201}, country={Israel}}
+\affiliation[1]{organization={School of Computer Science, Faculty of Sciences, Holon Institute of Technology (HIT)}}
 \author[2]{Yehudit Aperstein}[orcid=0000-0001-6390-9463]
-\cormark[1]
-\ead{apersteiny@afeka.ac.il}
-\credit{Conceptualization, Supervision, Writing -- review and editing}
-\affiliation[2]{organization={Intelligent Systems, Afeka Academic College of Engineering},
-  addressline={218 Bnei Efraim St.}, city={Tel-Aviv}, postcode={6910717}, country={Israel}}
-\cortext[1]{Corresponding author}
+\affiliation[2]{organization={Intelligent Systems, Afeka Academic College of Engineering}}
 \begin{abstract}
 %ABSTRACT%
 \end{abstract}
