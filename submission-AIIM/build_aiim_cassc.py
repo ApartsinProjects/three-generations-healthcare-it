@@ -56,15 +56,16 @@ FRONT = r"""\documentclass[a4paper,fleqn]{cas-sc}
 % the symbol-font limit ("Too many symbol fonts declared").
 \input{html2tex_compat.tex}
 \captionsetup{labelformat=empty,labelsep=none}% captions carry their own "Figure N." label
+\renewcommand{\printorcid}{}% no ORCIDs: suppress cas-sc's empty "orcid(s):" footnote label
 
 \begin{document}
 \shorttitle{Computable Clinical Intent}
 \shortauthors{Apartsin and Aperstein}
 \title[mode=title]{%TITLE%}
 \author[1]{Alexander Apartsin}
-\affiliation[1]{organization={School of Computer Science, Faculty of Sciences, Holon Institute of Technology (HIT)}}
+\affiliation[1]{op={}, organization={School of Computer Science, Faculty of Sciences, Holon Institute of Technology (HIT)}}
 \author[2]{Yehudit Aperstein}
-\affiliation[2]{organization={Intelligent Systems, Afeka Academic College of Engineering}}
+\affiliation[2]{op={}, organization={Intelligent Systems, Afeka Academic College of Engineering}}
 \begin{abstract}
 %ABSTRACT%
 \end{abstract}
