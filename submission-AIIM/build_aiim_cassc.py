@@ -61,9 +61,9 @@ FRONT = r"""\documentclass[a4paper,fleqn]{cas-sc}
 \shorttitle{Computable Clinical Intent}
 \shortauthors{Apartsin and Aperstein}
 \title[mode=title]{%TITLE%}
-\author[1]{Alexander Apartsin}[orcid=0009-0000-7007-3529]
+\author[1]{Alexander Apartsin}
 \affiliation[1]{organization={School of Computer Science, Faculty of Sciences, Holon Institute of Technology (HIT)}}
-\author[2]{Yehudit Aperstein}[orcid=0000-0001-6390-9463]
+\author[2]{Yehudit Aperstein}
 \affiliation[2]{organization={Intelligent Systems, Afeka Academic College of Engineering}}
 \begin{abstract}
 %ABSTRACT%
